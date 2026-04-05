@@ -4,7 +4,7 @@
 
 1992年に城西大学理学部に所属していた天野一男先生（数学）が開発した C プログラム `src2tex` の version 2.12 をベースに Go言語で完全に書き直したバージョンです。
 
-バージョン番号は √5 の小数表現で、バージョンアップの都度、近似していく形をとっています。現在のバージョンは、 **version 2.236** です。
+バージョン番号は $\sqrt 5$ の小数表現で、バージョンアップの都度、近似していく形をとっています。現在のバージョンは、 **version 2.236** です。
 
 前回のバージョンはオリジナル版に近い挙動を目指した移植を目的としていましたが、今回は現在のLaTeX事情を加味し、モダンLaTeXの使用を前提とするアーキテクチャの変更を行いました。詳しくは ARCHITECTURE.md および NOTE.md に記載しました。
 
@@ -12,7 +12,7 @@
 
 | ツール | 用途 |
 |--------|------|
-| [XeLaTeX](https://tug.org/xetex/) など$^1$（TeX Live / MacTeX） | PDF 生成 |
+| [XeLaTeX](https://tug.org/xetex/) など $^1$（TeX Live / MacTeX） | PDF 生成 |
 | [Ghostscript](https://www.ghostscript.com/) (`gs`) | EPS → PDF 変換 |
 
 <small>1: ほかにも LuaLaTeX、upLaTeX、pdfTeX（英語文書のみ）をサポートしています。プレーンなTeXのサポートは前回の [互換バージョン](https://github.com/yupyom/src2tex-go) で実現していましたが、著者自身がプレーンのTeXは使わないので、今回はLaTeX系のみにしました。</small>
@@ -71,7 +71,7 @@ xelatex -halt-on-error -interaction=nonstopmode hanoi.go.tex
 | | Python | `.py` | `python` | ✅ | ✅ (`"""` / `'''`) |
 | | Ruby | `.rb` | `ruby` | ✅ | — |
 | | Perl | `.pl`, `.pm` | `perl` | ✅ | — |
-| | Makefile $^2$ | `.mk`, `Makefile`* | `make` | — | — |
+| | Makefile $^2$ | `.mk`, `Makefile` | `make` | — | — |
 | | Tcl | `.tcl` | `tcl` | ✅ | — |
 | Percent 系 | REDUCE | `.red` | `reduce` | ✅ | — |
 | | MATLAB/Octave | `.m` | `matlab` | — | — |
