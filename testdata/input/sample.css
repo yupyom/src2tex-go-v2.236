@@ -1,0 +1,31 @@
+/*
+ * {\ \centerline{\bf CSS Sample} }
+ * Basic stylesheet for demonstration.
+ */
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;  /* フォント設定 */
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}

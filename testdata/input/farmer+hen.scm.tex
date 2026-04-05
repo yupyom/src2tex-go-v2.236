@@ -1,0 +1,316 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmonofont[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/cm-unicode/, BoldFont=cmuntb.otf]{cmuntt.otf}
+\setCJKmainfont[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/haranoaji/, Extension=.otf, BoldFont=HaranoAjiMincho-Bold.otf]{HaranoAjiMincho-Regular}
+\setCJKsansfont{Hiragino Sans W3}
+\setCJKmonofont{Hiragino Sans W3}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm farmer+hen.scm\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \hrulefill
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf [問題] あるお百姓さんが、大八車を引きながら村はずれの川の西の岸にやってきた。
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf 大八車には、荒縄でくくられたキャベツと背負い駕篭に入ったニワトリが積まれ
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf ていた。明日は隣村に市が立つので、その市でキャベツとニワトリを売ろうとい
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf うわけである。その後を、お百姓さんにすっかりなついてしまったキツネのコン
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf 太が、いかにもニワトリを食べたそうなそぶりて、着いて来ていた。
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;};
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; さて、川のほとりには一艘の小さな船がつないであった。この船で、お百姓さん
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; はニワトリ、キャベツ、キツネのすべてを川の東の岸へ運ばなければならない。
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; 困ったことに、この船は大変小さかったので、船をあやつるお百姓さん以外に
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; 一度に運べるのは、ニワトリ、キャベツ、キツネのうちのどれか一つだけだった。
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; ところが、腹のへったニワトリは、お百姓さんがいなくなるとキャベツを食べて
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; しまい、さらにキツネのコン太はお百姓さんが目を離すと、ニワトリを食べてし
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; まう。
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf どうやったら、お百姓さんは首尾良くニワトリ、キャベツ、キツネのすべてを東
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \bf 側の岸に運べるだろうか？
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \sc farmer+hen.scm \ by \ Kazuo AMANO
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; east-side-state is represented by list $(w\ x\ y\ z)$ where each $w, x, y, z = 0$ or $1$
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; example:
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; \null$$\eqalign{(1\ 1\ 1\ 1) &= {\rm (farmer\ hen\ cabbage\ fox)-state}\cr (0\ 1\ 0\ 1) &= {\rm (none\ hen\ none\ fox)-state}\cr (1\ 0\ 1\ 0) &= {\rm (farmer\ none\ cabbage\ none)-state}\cr}$$
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; initial-state = (1 1 1 1)
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; state-sequence = (... state2 state1 initial-state)
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt ;}; state-tree = (... state-sequece2 state-sequence1 state-sequence0)
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt ;}  西から東への移動
+\tt\mc 
+
+\noindent
+\mbox{}(\textbf{define}{\tt\mc \ }(west{\tt -}{\tt >}east{\tt\mc \ }x{\tt\mc \ }seq)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(\textbf{let}*{\tt\mc \ }((y{\tt\mc \ }(\textbf{car}{\tt\mc \ }seq)){\tt\mc \ }(fa{\tt\mc \ }(\textbf{car}{\tt\mc \ }y)){\tt\mc \ }(he{\tt\mc \ }(cadr{\tt\mc \ }y)){\tt\mc \ }(ca{\tt\mc \ }(caddr{\tt\mc \ }y)){\tt\mc \ }(fo{\tt\mc \ }(cadddr{\tt\mc \ }y)))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{cond}{\tt\mc \ }((={\tt\mc \ }fa{\tt\mc \ }0){\tt\mc \ }(\textbf{cons}{\tt\mc \ }'(){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(else{\tt\mc \ }(cond{\tt\mc \ }((and{\tt\mc \ }(equal?{\tt\mc \ }x{\tt\mc \ }'hen){\tt\mc \ }(={\tt\mc \ }he{\tt\mc \ }1)){\tt\mc \ }(\textbf{cons}{\tt\mc \ }(\textbf{list}{\tt\mc \ }0{\tt\mc \ }0{\tt\mc \ }ca{\tt\mc \ }fo){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((\textbf{and}{\tt\mc \ }(equal?{\tt\mc \ }x{\tt\mc \ }'cabbage){\tt\mc \ }(={\tt\mc \ }ca{\tt\mc \ }1)){\tt\mc \ }(cons{\tt\mc \ }(list{\tt\mc \ }0{\tt\mc \ }he{\tt\mc \ }0{\tt\mc \ }fo){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((and{\tt\mc \ }(equal?{\tt\mc \ }x{\tt\mc \ }'fox){\tt\mc \ }(={\tt\mc \ }fo{\tt\mc \ }1)){\tt\mc \ }(\textbf{cons}{\tt\mc \ }(\textbf{list}{\tt\mc \ }0{\tt\mc \ }he{\tt\mc \ }ca{\tt\mc \ }0){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{else}{\tt\mc \ }(\textbf{cons}{\tt\mc \ }'(){\tt\mc \ }seq)))))))
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{};{\tt\mc \ }{\tt\mc \ }東から西への移動
+
+\noindent
+\mbox{}(define{\tt\mc \ }(west{\tt <}{\tt -}east{\tt\mc \ }x{\tt\mc \ }seq)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(let*{\tt\mc \ }((y{\tt\mc \ }(car{\tt\mc \ }seq)){\tt\mc \ }(fa{\tt\mc \ }(car{\tt\mc \ }y)){\tt\mc \ }(he{\tt\mc \ }(cadr{\tt\mc \ }y)){\tt\mc \ }(ca{\tt\mc \ }(caddr{\tt\mc \ }y)){\tt\mc \ }(fo{\tt\mc \ }(cadddr{\tt\mc \ }y)))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(cond{\tt\mc \ }((={\tt\mc \ }fa{\tt\mc \ }1){\tt\mc \ }(cons{\tt\mc \ }'(){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{else}{\tt\mc \ }(\textbf{cond}{\tt\mc \ }((\textbf{and}{\tt\mc \ }(equal?{\tt\mc \ }x{\tt\mc \ }'hen){\tt\mc \ }(={\tt\mc \ }he{\tt\mc \ }0)){\tt\mc \ }(cons{\tt\mc \ }(list{\tt\mc \ }1{\tt\mc \ }1{\tt\mc \ }ca{\tt\mc \ }fo){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((and{\tt\mc \ }(equal?{\tt\mc \ }x{\tt\mc \ }'cabbage){\tt\mc \ }(={\tt\mc \ }ca{\tt\mc \ }0)){\tt\mc \ }(\textbf{cons}{\tt\mc \ }(\textbf{list}{\tt\mc \ }1{\tt\mc \ }he{\tt\mc \ }1{\tt\mc \ }fo){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((\textbf{and}{\tt\mc \ }(equal?{\tt\mc \ }x{\tt\mc \ }'fox){\tt\mc \ }(={\tt\mc \ }fo{\tt\mc \ }0)){\tt\mc \ }(cons{\tt\mc \ }(list{\tt\mc \ }1{\tt\mc \ }he{\tt\mc \ }ca{\tt\mc \ }1){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }x{\tt\mc \ }'none){\tt\mc \ }(\textbf{cons}{\tt\mc \ }(\textbf{list}{\tt\mc \ }1{\tt\mc \ }he{\tt\mc \ }ca{\tt\mc \ }fo){\tt\mc \ }seq))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{else}{\tt\mc \ }(\textbf{cons}{\tt\mc \ }'(){\tt\mc \ }seq)))))))
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{};{\tt\mc \ }{\tt\mc \ }終了の判定をする関数
+
+\noindent
+\mbox{}(define{\tt\mc \ }(finished?{\tt\mc \ }tree)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(let{\tt\mc \ }finished1?{\tt\mc \ }((x{\tt\mc \ }tree))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(cond{\tt\mc \ }((null?{\tt\mc \ }x){\tt\mc \ }{\tt\#}f)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(0{\tt\mc \ }0{\tt\mc \ }0{\tt\mc \ }0)){\tt\mc \ }{\tt\#}t)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{else}{\tt\mc \ }(finished1?{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x))))))
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt ;}  不適当な branch を切り落とす関数
+\tt\mc 
+
+\noindent
+\mbox{}(\textbf{define}{\tt\mc \ }(rm{\tt -}bad{\tt -}seq{\tt\mc \ }tree)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(\textbf{let}{\tt\mc \ }rm{\tt -}bad{\tt -}seq1{\tt\mc \ }((x{\tt\mc \ }tree){\tt\mc \ }(y{\tt\mc \ }'()))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(cond{\tt\mc \ }((null?{\tt\mc \ }x){\tt\mc \ }y)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }((null?{\tt\mc \ }(caar{\tt\mc \ }x)){\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(cdr{\tt\mc \ }x){\tt\mc \ }y))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(1{\tt\mc \ }0{\tt\mc \ }1{\tt\mc \ }0)){\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x){\tt\mc \ }y))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(1{\tt\mc \ }0{\tt\mc \ }0{\tt\mc \ }1)){\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(cdr{\tt\mc \ }x){\tt\mc \ }y))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(0{\tt\mc \ }1{\tt\mc \ }1{\tt\mc \ }0)){\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x){\tt\mc \ }y))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(0{\tt\mc \ }1{\tt\mc \ }0{\tt\mc \ }1)){\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(cdr{\tt\mc \ }x){\tt\mc \ }y))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(1{\tt\mc \ }1{\tt\mc \ }1{\tt\mc \ }1)){\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x){\tt\mc \ }y))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{else}{\tt\mc \ }(rm{\tt -}bad{\tt -}seq1{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x){\tt\mc \ }(\textbf{cons}{\tt\mc \ }(\textbf{car}{\tt\mc \ }x){\tt\mc \ }y))))))
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt ;}  branch を成長させる関数
+\tt\mc 
+
+\noindent
+\mbox{}(\textbf{define}{\tt\mc \ }(mkseq{\tt\mc \ }seq)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(rm{\tt -}bad{\tt -}seq
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{list}{\tt\mc \ }(west{\tt -}{\tt >}east{\tt\mc \ }'hen{\tt\mc \ }seq){\tt\mc \ }(west{\tt -}{\tt >}east{\tt\mc \ }'cabbage{\tt\mc \ }seq){\tt\mc \ }(west{\tt -}{\tt >}east{\tt\mc \ }'fox{\tt\mc \ }seq)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(west{\tt <}{\tt -}east{\tt\mc \ }'hen{\tt\mc \ }seq){\tt\mc \ }(west{\tt <}{\tt -}east{\tt\mc \ }'cabbage{\tt\mc \ }seq){\tt\mc \ }(west{\tt <}{\tt -}east{\tt\mc \ }'fox{\tt\mc \ }seq)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(west{\tt <}{\tt -}east{\tt\mc \ }'none{\tt\mc \ }seq))))
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{};{\tt\mc \ }{\tt\mc \ }手順の{\tt\mc \ }tree{\tt\mc \ }を作る関数
+
+\noindent
+\mbox{}(define{\tt\mc \ }(mktree{\tt\mc \ }initial{\tt -}state)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(let{\tt\mc \ }mktree1{\tt\mc \ }((x{\tt\mc \ }(list{\tt\mc \ }(list{\tt\mc \ }initial{\tt -}state))))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(cond{\tt\mc \ }((finished?{\tt\mc \ }x){\tt\mc \ }x)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(else{\tt\mc \ }(mktree1{\tt\mc \ }(let{\tt\mc \ }mktree2{\tt\mc \ }((x1{\tt\mc \ }x){\tt\mc \ }(x2{\tt\mc \ }'()))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{cond}{\tt\mc \ }((null?{\tt\mc \ }x1){\tt\mc \ }x2)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(\textbf{else}{\tt\mc \ }(mktree2{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x1){\tt\mc \ }(append{\tt\mc \ }x2{\tt\mc \ }(mkseq{\tt\mc \ }(\textbf{car}{\tt\mc \ }x1))))))))))))
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt ;}  main 関数
+\tt\mc 
+
+\noindent
+\mbox{}(\textbf{define}{\tt\mc \ }(main{\tt -}func)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(\textbf{let}{\tt\mc \ }display{\tt -}answer{\tt\mc \ }((x{\tt\mc \ }(mktree{\tt\mc \ }'(1{\tt\mc \ }1{\tt\mc \ }1{\tt\mc \ }1))))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(cond{\tt\mc \ }((null?{\tt\mc \ }x){\tt\mc \ }(newline))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }(else{\tt\mc \ }(cond{\tt\mc \ }((equal?{\tt\mc \ }(caar{\tt\mc \ }x){\tt\mc \ }'(0{\tt\mc \ }0{\tt\mc \ }0{\tt\mc \ }0)){\tt\mc \ }(display{\tt\mc \ }(\textbf{car}{\tt\mc \ }x)){\tt\mc \ }(newline)))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(display{\tt -}answer{\tt\mc \ }(\textbf{cdr}{\tt\mc \ }x))))))
+
+\rm\mc
+
+\end{document}

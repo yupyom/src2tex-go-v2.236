@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- {\ \centerline{\bf Towers of Hanoi --- HTML{\ /}CSS{\ /}JavaScript}} -->
+<!--
+{\ \begin{quote}
+\noindent
+This is a fully working implementation of the Towers of Hanoi
+puzzle that runs in any modern web browser.  The recursive algorithm
+moves $n$ discs from pole A to pole C via pole B, requiring exactly
+$2^n - 1$ moves.  Open this file in a browser to see it in action.
+\end{quote} }
+-->
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Hanoi Tower --- HTML/CSS/JavaScript</title>
+    <style type="text/css">
+        /* {\ \centerline{\bf Stylesheet}} */
+        /* ページ全体のスタイル */
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        /* タワーのコンテナ */
+        .towers {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+        }
+        .tower {
+            width: 200px;
+            min-height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+            text-align: center;
+        }
+        .tower h2 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        /* ディスクのスタイル */
+        .disc {
+            height: 20px;
+            margin: 2px auto;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        /* 操作ログ */
+        #log {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #4a90d9;
+            background: #4a90d9;
+            color: #fff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Towers of Hanoi</h1>
+
+    <div class="controls">
+        <label>Discs: <select id="num-discs">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+        </select></label>
+        <button onclick="startHanoi()">Start</button>
+    </div>
+
+    <div class="towers">
+        <div class="tower" id="tower-a"><h2>Tower A</h2></div>
+        <div class="tower" id="tower-b"><h2>Tower B</h2></div>
+        <div class="tower" id="tower-c"><h2>Tower C</h2></div>
+    </div>
+
+    <div id="log"></div>
+
+    <script>
+        // {\ \centerline{\bf JavaScript Section}}
+        // {\ ハノイの塔を再帰的に解き、}
+        // {\    操作手順をログに表示する \hfill}
+
+        var moves = [];                 // {\ 操作手順の配列 \hfill}
+
+        /*
+         * ハノイの塔を再帰的に解く
+         * n: ディスクの枚数
+         * src, dst, tmp: タワー名
+         */
+        function hanoi(n, src, dst, tmp) {
+            if (n <= 0) return;
+            hanoi(n - 1, src, tmp, dst); // {\ 上 $n-1$ 枚を退避 \hfill}
+            moves.push({                // {\ 最大ディスクを移動 \hfill}
+                disc: n, from: src, to: dst
+            });
+            hanoi(n - 1, tmp, dst, src); // {\ 退避分を目的地へ \hfill}
+        }
+
+        // {\ {\bf タワーの初期化} \hfill}
+        function initTowers(numDiscs) {
+            var towers = {A: [], B: [], C: []};
+            for (var i = numDiscs; i >= 1; i--) {
+                towers["A"].push(i);
+            }
+            return towers;
+        }
+
+        // {\ {\bf ディスクの描画} \hfill}
+        function renderTowers(towers, numDiscs) {
+            var names = ["A", "B", "C"];
+            var colors = [
+                "#e74c3c", "#e67e22", "#f1c40f",
+                "#2ecc71", "#3498db", "#9b59b6",
+                "#1abc9c", "#34495e"
+            ];
+            for (var t = 0; t < 3; t++) {
+                var el = document.getElementById(
+                    "tower-" + names[t].toLowerCase()
+                );
+                var h2 = el.querySelector("h2").outerHTML;
+                el.innerHTML = h2;
+                var stack = towers[names[t]];
+                for (var i = stack.length - 1; i >= 0; i--) {
+                    var disc = document.createElement("div");
+                    disc.className = "disc";
+                    var w = 30 + stack[i] * 20;
+                    disc.style.width = w + "px";
+                    disc.style.backgroundColor =
+                        colors[(stack[i] - 1) % colors.length];
+                    el.appendChild(disc);
+                }
+            }
+        }
+
+        // {\ {\bf メイン実行関数} \hfill}
+        // {\ [問題] {\tt hanoi(n, src, dst, tmp)} の}
+        // {\    呼び出し回数が $2^n - 1$ であること \hfill}
+        // {\ を数学的帰納法で証明せよ。\hfill}
+        function startHanoi() {
+            var n = parseInt(
+                document.getElementById("num-discs").value
+            );
+            moves = [];
+            hanoi(n, "A", "C", "B");
+
+            var towers = initTowers(n);
+            renderTowers(towers, n);
+
+            var log = document.getElementById("log");
+            log.innerHTML = "<b>Moves: " + moves.length + "</b>\n";
+
+            var step = 0;
+            var timer = setInterval(function() {
+                if (step >= moves.length) {
+                    clearInterval(timer);
+                    log.innerHTML += "\n<b>Done!</b>";
+                    return;
+                }
+                var m = moves[step];
+                var disc = towers[m.from].pop();
+                towers[m.to].push(disc);
+                renderTowers(towers, n);
+                log.innerHTML +=
+                    "#" + (step+1) + ": Move disc " +
+                    m.disc + " from " + m.from +
+                    " to " + m.to + "\n";
+                log.scrollTop = log.scrollHeight;
+                step++;
+            }, 500);
+        }
+    </script>
+</body>
+</html>

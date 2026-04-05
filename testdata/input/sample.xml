@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- {\ \centerline{\bf XML Sample} } -->
+<!--
+  This XML file demonstrates comment handling.
+  {\ Multiple lines with \TeX\ passthrough. }
+-->
+<catalog>
+  <book id="1">
+    <title>The Art of Programming</title>  <!-- タイトル -->
+    <author>D. Knuth</author>
+    <price>59.99</price>
+  </book>
+  <book id="2">
+    <title>Structure and Interpretation</title>
+    <author>H. Abelson</author>
+    <price>45.00</price>
+  </book>
+</catalog>

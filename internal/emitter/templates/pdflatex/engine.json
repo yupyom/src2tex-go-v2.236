@@ -1,0 +1,8 @@
+{
+  "name": "pdfLaTeX",
+  "description": "Traditional TeX engine with bxjsarticle (CJK via bxcjkjatype)",
+  "compile_cmd": "pdflatex",
+  "supports_cjk": true,
+  "supports_fontspec": false,
+  "preamble_template": "preamble.tmpl"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "LuaLaTeX",
+  "description": "Unicode TeX engine with luatexja (CJK support)",
+  "compile_cmd": "lualatex",
+  "supports_cjk": true,
+  "preamble_template": "preamble.tmpl"
+}

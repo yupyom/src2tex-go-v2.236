@@ -1,0 +1,325 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmonofont[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/cm-unicode/, BoldFont=cmuntb.otf]{cmuntt.otf}
+\setCJKmainfont{Hiragino Sans W3}
+\setCJKsansfont{Hiragino Sans W3}
+\setCJKmonofont{Hiragino Sans W3}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm input{\tt /}hanoi.sh\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}!/bin/bash
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \hrulefill 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ % beginning of TeX mode 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \centerline{\bf Towers of Hanoi (Shell)} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \begin{quote} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ This program gives an answer to the following famous problem (towers of 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ Hanoi). 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ There is a legend that when one of the temples in Hanoi was constructed, 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ three poles were erected and a tower consisting of 64 golden discs was 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ arranged on one pole, their sizes decreasing regularly from bottom to top. 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ The monks were to move the tower of discs to the opposite pole, moving 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ only one at a time, and never putting any size disc above a smaller one. 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ The job was to be done in the minimum numbers of moves. What strategy for 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ moving discs will accomplish this optimum transfer? 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \end{quote} \ % end of TeX mode \hrulefill 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \hrulefill\ hanoi.sh \ \hrulefill
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}ARRAY=8{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ disc の数 \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}counter=0{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ 移動回数カウンタ \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}init{\tt\_}array(){\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ disc に関するデータの初期化\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{local}{\tt\mc \ }j
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }j{\tt\mc \ }\textbf{in}{\tt\mc \ }{\tt\$}(seq{\tt\mc \ }0{\tt\mc \ }{\tt\$}((ARRAY{\tt\mc \ }{\tt -}{\tt\mc \ }1)));{\tt\mc \ }\textbf{do}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}disc{\tt\_}0{\tt\_}{\tt\$}j={\tt\$}((ARRAY{\tt\mc \ }{\tt -}{\tt\mc \ }j)){\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}disc{\tt\_}1{\tt\_}{\tt\$}j=0{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}disc{\tt\_}2{\tt\_}{\tt\$}j=0{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{done}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }ptr{\tt\_}0={\tt\$}ARRAY{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ disc 移動用ポインタ（インデックス）\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }ptr{\tt\_}1=0
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }ptr{\tt\_}2=0
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}print{\tt\_}result(){\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ 結果の表示 \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{local}{\tt\mc \ }i{\tt\mc \ }j{\tt\mc \ }val
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }counter={\tt\$}((counter{\tt\mc \ }+{\tt\mc \ }1))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt "}{\tt -}{\tt -}{\tt -}{\tt\#}{\tt\$}{\tt\char'173}counter{\tt\char'175}{\tt -}{\tt -}{\tt -}{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }i{\tt\mc \ }\textbf{in}{\tt\mc \ }0{\tt\mc \ }1{\tt\mc \ }2;{\tt\mc \ }\textbf{do}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }printf{\tt\mc \ }{\tt "}[{\tt\%}d]{\tt\mc \ }{\tt "}{\tt\mc \ }{\tt "}{\tt\$}i{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }j{\tt\mc \ }\textbf{in}{\tt\mc \ }{\tt\$}(seq{\tt\mc \ }0{\tt\mc \ }{\tt\$}((ARRAY{\tt\mc \ }{\tt -}{\tt\mc \ }1)));{\tt\mc \ }\textbf{do}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}val={\tt\char92}{\tt\$}disc{\tt\_}{\tt\$}{\tt\char'173}i{\tt\char'175}{\tt\_}{\tt\$}{\tt\char'173}j{\tt\char'175}{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }[{\tt\mc \ }{\tt "}{\tt\$}val{\tt "}{\tt\mc \ }{\tt -}ne{\tt\mc \ }0{\tt\mc \ }];{\tt\mc \ }\textbf{then}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }printf{\tt\mc \ }{\tt "}{\tt\%}d{\tt\mc \ }{\tt "}{\tt\mc \ }{\tt "}{\tt\$}val{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{else}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }break
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{fi}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{done}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{echo}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{done}
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}move{\tt\_}one{\tt\_}disc(){\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ 1枚の disc を pole $i$ から\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ pole $j$ に移動する \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{local}{\tt\mc \ }i={\tt\$}1{\tt\mc \ }j={\tt\$}2{\tt\mc \ }ptr{\tt\_}i{\tt\mc \ }ptr{\tt\_}j
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}ptr{\tt\_}i={\tt\char92}{\tt\$}ptr{\tt\_}{\tt\$}i{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }ptr{\tt\_}i={\tt\$}((ptr{\tt\_}i{\tt\mc \ }{\tt -}{\tt\mc \ }1))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}ptr{\tt\_}{\tt\$}i={\tt\$}ptr{\tt\_}i{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}ptr{\tt\_}j={\tt\char92}{\tt\$}ptr{\tt\_}{\tt\$}j{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}disc{\tt\_}{\tt\$}{\tt\char'173}j{\tt\char'175}{\tt\_}{\tt\$}{\tt\char'173}ptr{\tt\_}j{\tt\char'175}={\tt\char92}{\tt\$}disc{\tt\_}{\tt\$}{\tt\char'173}i{\tt\char'175}{\tt\_}{\tt\$}{\tt\char'173}ptr{\tt\_}i{\tt\char'175}{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }ptr{\tt\_}j={\tt\$}((ptr{\tt\_}j{\tt\mc \ }+{\tt\mc \ }1))
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}ptr{\tt\_}{\tt\$}j={\tt\$}ptr{\tt\_}j{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }eval{\tt\mc \ }{\tt "}disc{\tt\_}{\tt\$}{\tt\char'173}i{\tt\char'175}{\tt\_}{\tt\$}{\tt\char'173}ptr{\tt\_}i{\tt\char'175}=0{\tt "}
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}move{\tt\_}discs(){\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ \underline{\textsf{上から $n$ 枚目までの disc}}を、\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ pole $i$ から pole $j$ に\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ pole $k$ を経由して、移動する\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{local}{\tt\mc \ }n={\tt\$}1{\tt\mc \ }i={\tt\$}2{\tt\mc \ }j={\tt\$}3{\tt\mc \ }k={\tt\$}4
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }[{\tt\mc \ }{\tt "}{\tt\$}n{\tt "}{\tt\mc \ }{\tt -}ge{\tt\mc \ }1{\tt\mc \ }];{\tt\mc \ }\textbf{then}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }move{\tt\_}discs{\tt\mc \ }{\tt\$}((n{\tt\mc \ }{\tt -}{\tt\mc \ }1)){\tt\mc \ }{\tt "}{\tt\$}i{\tt "}{\tt\mc \ }{\tt "}{\tt\$}k{\tt "}{\tt\mc \ }{\tt "}{\tt\$}j{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ 関数 {\tt move\_discs()}の中で、さらに自分自身 \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }move{\tt\_}one{\tt\_}disc{\tt\mc \ }{\tt "}{\tt\$}i{\tt "}{\tt\mc \ }{\tt "}{\tt\$}j{\tt "}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ {\tt move\_discs()} が使われている。このような \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }print{\tt\_}result{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ 手法は、「再帰的呼びだし」といわれる。 \hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }move{\tt\_}discs{\tt\mc \ }{\tt\$}((n{\tt\mc \ }{\tt -}{\tt\mc \ }1)){\tt\mc \ }{\tt "}{\tt\$}k{\tt "}{\tt\mc \ }{\tt "}{\tt\$}j{\tt "}{\tt\mc \ }{\tt "}{\tt\$}i{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{fi}
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \par\begin{center}\includegraphics[scale=0.3]{hanoi1}\quad\includegraphics[scale=0.3]{hanoi2}\end{center} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ たとえば、関数 {\tt move\_discs(4, 0, 1, 2)} を呼び出すことは、 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ 上図のような操作をすることに対応する。\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}init{\tt\_}array
+
+\noindent
+\mbox{}move{\tt\_}discs{\tt\mc \ }{\tt\$}ARRAY{\tt\mc \ }0{\tt\mc \ }1{\tt\mc \ }2{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ {\tt ARRAY} 枚の disc をpole 0 から pole 1 に pole 2\hfill 
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} \ を経由して、移動する \hfill 
+
+\tt\mc 
+
+\rm\mc
+
+\end{document}

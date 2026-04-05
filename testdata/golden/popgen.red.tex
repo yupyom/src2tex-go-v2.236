@@ -1,0 +1,309 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmonofont[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/cm-unicode/, BoldFont=cmuntb.otf]{cmuntt.otf}
+\setCJKmainfont{Hiragino Sans W3}
+\setCJKsansfont{Hiragino Sans W3}
+\setCJKmonofont{Hiragino Sans W3}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm input{\tt /}popgen.red\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\%} \bf popgen.red
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\%} \null
+ We shall solve the equation
+ $$
+ \eqalign{
+ {\partial u\over\partial t}
+	&=a(x){\partial^2 u\over\partial x^2}
+	+b(x){\partial u\over\partial x}
+	+c(x) u\cr
+	&={x(1-x)\over 2}{\partial^2 u\over\partial x^2}
+	+b(x){\partial u\over\partial x}
+	+c(x) u\cr
+ }
+ $$
+ by using numerical-symbolic hybrid method established by K. Amano.
+ This equation plays an important role in population genetics.
+ \rm\mc 
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\%} coefficients
+\tt\mc 
+
+\noindent
+\mbox{}\textbf{procedure}{\tt\mc \ }sqrt{\tt\_}a(x);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }sqrt(x*(1{\tt -}x)/2);
+
+\noindent
+\mbox{}\textbf{procedure}{\tt\mc \ }b(x);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }1/2{\tt -}x;
+
+\noindent
+\mbox{}\textbf{procedure}{\tt\mc \ }c(x);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }0;
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\%} domain
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\%} \null
+ $$
+ {\tt domain\_p(t,x)}=\cases{
+	1 &if $(t,x)$ belongs to the domain\cr
+	\cr
+	0 &otherwise\cr
+ }
+ $$
+ \rm\mc 
+\tt\mc 
+
+\noindent
+\mbox{}\textbf{procedure}{\tt\mc \ }domain{\tt\_}p(t,x);
+
+\noindent
+\mbox{}\textbf{begin};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{on}{\tt\mc \ }rounded;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }t{\tt\mc \ }{\tt <}{\tt\mc \ }0{\tt\mc \ }\textbf{or}{\tt\mc \ }x{\tt\mc \ }{\tt <}{\tt\mc \ }0{\tt\mc \ }\textbf{or}{\tt\mc \ }x{\tt\mc \ }{\tt >}{\tt\mc \ }1{\tt\mc \ }\textbf{then}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}{\tt <}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{off}{\tt\mc \ }rounded;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }0
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt >}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{else}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}{\tt <}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{off}{\tt\mc \ }rounded;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }1
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt >}{\tt >}
+
+\noindent
+\mbox{}\textbf{end};
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\%} numerical-symbolic hybrid method
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\%} \ Key idea depends on the following formula:
+ $$
+ \eqalign{
+ u(t,x)
+ &={1\over6}\,u\bigl(t,x+\sqrt{a(x)}\,h\bigr)
+	+{1\over6}\,u\bigl(t,x-\sqrt{a(x)}\,h\bigr)\cr
+ &+{1\over3}\,u\bigl(t,x+b(x)h^2\bigr)
+	+{1\over3}\,u(t-h^2,x)
+	+{h^2\over3}\,c(x)u(t,x)
+	+O(h^4)\ .\cr
+ }
+ $$
+ \rm\mc 
+\tt\mc 
+
+\noindent
+\mbox{}\textbf{procedure}{\tt\mc \ }hybrid{\tt\_}method(t,{\tt\mc \ }x,{\tt\mc \ }n);
+
+\noindent
+\mbox{}\textbf{begin};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}in{\tt\mc \ }:={\tt\mc \ }{\tt\char'173}{\tt\char'173}1,{\tt\mc \ }t,{\tt\mc \ }x{\tt\char'175}{\tt\char'175};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }{\tt\char'173}{\tt\char'175};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{while}{\tt\mc \ }n{\tt\mc \ }{\tt >}{\tt\mc \ }0{\tt\mc \ }\textbf{do}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}{\tt <}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{while}{\tt\mc \ }length(list{\tt\_}in){\tt\mc \ }{\tt >}{\tt\mc \ }0{\tt\mc \ }\textbf{do}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}{\tt <}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }tmp{\tt\mc \ }:={\tt\mc \ }first(list{\tt\_}in);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }q{\tt\mc \ }:={\tt\mc \ }first(tmp);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }:={\tt\mc \ }first(rest(tmp));
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }y{\tt\mc \ }:={\tt\mc \ }first(rest(rest(tmp)));
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }domain{\tt\_}p(s,{\tt\mc \ }y){\tt\mc \ }\textbf{neq}{\tt\mc \ }0{\tt\mc \ }\textbf{then}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}{\tt <}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }cons({\tt\char'173}q/6,{\tt\mc \ }s,{\tt\mc \ }y+sqrt{\tt\_}a(y)*h{\tt\char'175},{\tt\mc \ }list{\tt\_}tmp);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }cons({\tt\char'173}q/6,{\tt\mc \ }s,{\tt\mc \ }y{\tt -}sqrt{\tt\_}a(y)*h{\tt\char'175},{\tt\mc \ }list{\tt\_}tmp);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }cons({\tt\char'173}q/3,{\tt\mc \ }s,{\tt\mc \ }y+b(y)*h**2{\tt\char'175},{\tt\mc \ }list{\tt\_}tmp);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }cons({\tt\char'173}q/3,{\tt\mc \ }s{\tt -}h**2,{\tt\mc \ }y{\tt\char'175},{\tt\mc \ }list{\tt\_}tmp);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }cons({\tt\char'173}h**2*c(y)/3,{\tt\mc \ }s,{\tt\mc \ }y{\tt\char'175},{\tt\mc \ }list{\tt\_}tmp)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt >}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{else}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }cons({\tt\char'173}q,{\tt\mc \ }s,{\tt\mc \ }y{\tt\char'175},{\tt\mc \ }list{\tt\_}tmp);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}in{\tt\mc \ }:={\tt\mc \ }rest(list{\tt\_}in)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt >}{\tt >};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}in{\tt\mc \ }:={\tt\mc \ }list{\tt\_}tmp;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }list{\tt\_}tmp{\tt\mc \ }:={\tt\mc \ }{\tt\char'173}{\tt\char'175};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }n{\tt\mc \ }:={\tt\mc \ }n{\tt -}1
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt >}{\tt >};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }list{\tt\_}in
+
+\noindent
+\mbox{}\textbf{end};
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\%} main module
+\tt\mc 
+
+\noindent
+\mbox{}h{\tt\mc \ }:={\tt\mc \ }0.1;
+
+\noindent
+\mbox{}hybrid{\tt\_}method(4,{\tt\mc \ }0.5,{\tt\mc \ }2);
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\textbf{end};
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\%} Here we give a numerical example.
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\%} \null
+ $$
+ \cases{
+ \displaystyle{\partial u\over\partial t}={1\over4N}
+ {\partial^2\over\partial x^2}\big(x(1-x)u\big)
+	\qquad (0<t\le 4N,\ 0<x<1)\cr
+ \cr
+u(0,x)\sim\delta(x-0.5)\cr
+ }
+ $$
+ \rm\mc 
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\%} \special{epsfile=solution.eps hscale=0.7 vscale=0.7}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\rm\mc
+
+\end{document}

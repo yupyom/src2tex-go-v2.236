@@ -1,0 +1,7 @@
+{
+  "name": "XeLaTeX",
+  "description": "Unicode TeX engine with fontspec + xeCJK (default)",
+  "compile_cmd": "xelatex",
+  "supports_cjk": true,
+  "preamble_template": "preamble.tmpl"
+}

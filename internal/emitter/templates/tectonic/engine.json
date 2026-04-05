@@ -1,0 +1,7 @@
+{
+  "name": "Tectonic",
+  "description": "XeTeX-based engine with auto-download (same template as XeLaTeX)",
+  "compile_cmd": "tectonic",
+  "supports_cjk": true,
+  "preamble_template": "preamble.tmpl"
+}

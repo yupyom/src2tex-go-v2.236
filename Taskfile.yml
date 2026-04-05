@@ -1,0 +1,382 @@
+# Taskfile.yml - src2tex v2.236 build & sample conversion tasks
+# https://taskfile.dev
+#
+# Prerequisites:
+#   - Go 1.21+        : https://go.dev/dl/
+#   - Task (go-task)  : https://taskfile.dev/installation/
+#   - XeLaTeX         : for PDF generation (TeX Live / MacTeX)
+
+version: '3'
+
+vars:
+  BIN_NAME: src2tex
+  BIN_EXT: '{{if eq OS "windows"}}.exe{{end}}'
+  BIN: '{{.BIN_NAME}}{{.BIN_EXT}}'
+  BIN_PATH: '{{if eq OS "windows"}}{{.BIN_NAME}}-win-amd64.exe{{else}}./{{.BIN}}{{end}}'
+  SAMPLES_DIR: testdata/input
+  TEX_ENGINE: xelatex # デフォルトは xelatex その他に [tectonic | lualatex | uplatex | pdflatex] が指定可能
+  # DEBUG=true のときフォント指定あり、falseのとき空
+  DEBUG: false
+  ARG: '{{if eq .DEBUG true}} -engine {{.TEX_ENGINE}} -font hackgen {{else}} {{end}}'
+  ARG2: '{{if eq .DEBUG true}} -engine {{.TEX_ENGINE}} -font firple -commentfont firple{{else}} {{end}}'
+
+  # --- ファイルリスト (カテゴリ別) ---
+  # C family
+  FILES_C_FAMILY:
+    - hanoi.c
+    - hanoi.go
+    - hanoi.java
+    - hanoi.cpp
+    - hanoi.cs
+    - hanoi.dart
+    - hanoi.rs
+    - hanoi.js
+    - hanoi.ts
+    - hanoi.kt
+    - hanoi.swift
+    - hanoi.php
+    - simpson.c
+    - newton.c
+  # Hash family
+  FILES_HASH_FAMILY:
+    - hanoi.sh
+    - hanoi.py
+    - hanoi.rb
+    - hanoi.pl
+    - hanoi.tcl
+  # Pascal
+  FILES_PASCAL:
+    - hanoi.pas
+    - hanoi.m
+    - hanoi.red
+  # Semicolon family
+  FILES_SEMICOLON:
+    - hanoi.scm
+  # Markup / composite (ARG2 を使う)
+  FILES_MARKUP:
+    - sample.xml
+    - sample.css
+    - sample.html
+    - sample.php
+  # ARG2 を使うファイル (Hash family 内の特殊)
+  FILES_HASH_ARG2:
+    - sample_docstring.py
+
+tasks:
+  # ===========================================================================
+  # Build Tasks
+  # ===========================================================================
+
+  default:
+    desc: Build src2tex for the current platform
+    cmds:
+      - task: build
+
+  build:
+    desc: Build src2tex for the current platform
+    cmds:
+      - go build -o {{.BIN}} ./cmd/src2tex/
+    sources:
+      - cmd/src2tex/*.go
+      - internal/**/*.go
+      - go.mod
+    generates:
+      - '{{.BIN}}'
+
+  build:all:
+    desc: Cross-compile for all supported platforms
+    cmds:
+      - task: build:darwin-arm64
+      - task: build:darwin-amd64
+      - task: build:linux-amd64
+      - task: build:windows-amd64
+
+  build:darwin-arm64:
+    desc: Build for macOS (Apple Silicon)
+    env:
+      GOOS: darwin
+      GOARCH: arm64
+    cmds:
+      - go build -o {{.BIN_NAME}}-darwin-arm64 ./cmd/src2tex/
+    sources:
+      - cmd/src2tex/*.go
+      - internal/**/*.go
+      - go.mod
+    generates:
+      - '{{.BIN_NAME}}-darwin-arm64'
+
+  build:darwin-amd64:
+    desc: Build for macOS (Intel)
+    env:
+      GOOS: darwin
+      GOARCH: amd64
+    cmds:
+      - go build -o {{.BIN_NAME}}-darwin-amd64 ./cmd/src2tex/
+    sources:
+      - cmd/src2tex/*.go
+      - internal/**/*.go
+      - go.mod
+    generates:
+      - '{{.BIN_NAME}}-darwin-amd64'
+
+  build:linux-amd64:
+    desc: Build for Linux (amd64)
+    env:
+      GOOS: linux
+      GOARCH: amd64
+    cmds:
+      - go build -o {{.BIN_NAME}}-linux-amd64 ./cmd/src2tex/
+    sources:
+      - cmd/src2tex/*.go
+      - internal/**/*.go
+      - go.mod
+    generates:
+      - '{{.BIN_NAME}}-linux-amd64'
+
+  build:windows-amd64:
+    desc: Build for Windows (amd64)
+    env:
+      GOOS: windows
+      GOARCH: amd64
+    cmds:
+      - go build -o {{.BIN_NAME}}-win-amd64.exe ./cmd/src2tex/
+    sources:
+      - cmd/src2tex/*.go
+      - internal/**/*.go
+      - go.mod
+    generates:
+      - '{{.BIN_NAME}}-win-amd64.exe'
+
+  # ===========================================================================
+  # Sample Conversion Tasks
+  # ===========================================================================
+
+  samples:
+    desc: Convert all sample source files to TeX
+    deps: [build]
+    dir: '{{.SAMPLES_DIR}}'
+    cmds:
+      # C family (ARG)
+      - for: { var: FILES_C_FAMILY, as: FILE }
+        cmd: ../../{{.BIN}}{{.ARG}} {{.FILE}}
+      # Hash family (ARG)
+      - for: { var: FILES_HASH_FAMILY, as: FILE }
+        cmd: ../../{{.BIN}}{{.ARG}} {{.FILE}}
+      # Hash family special (ARG2)
+      - for: { var: FILES_HASH_ARG2, as: FILE }
+        cmd: ../../{{.BIN}}{{.ARG2}} {{.FILE}}
+      # Pascal (ARG)
+      - for: { var: FILES_PASCAL, as: FILE }
+        cmd: ../../{{.BIN}}{{.ARG}} {{.FILE}}
+      # Percent family (no ARG - always uses -lang reduce)
+      - ../../{{.BIN}} -engine {{.TEX_ENGINE}} -lang reduce popgen.red
+      # Semicolon family (ARG)
+      - for: { var: FILES_SEMICOLON, as: FILE }
+        cmd: ../../{{.BIN}}{{.ARG}} {{.FILE}}
+      # Lisp (no ARG - always uses -lang lisp)
+      - ../../{{.BIN}} -engine {{.TEX_ENGINE}} -lang lisp farmer+hen.scm
+      # Markup / composite (ARG2)
+      - for: { var: FILES_MARKUP, as: FILE }
+        cmd: ../../{{.BIN}}{{.ARG2}} {{.FILE}}
+
+  # ===========================================================================
+  # PDF Generation Tasks
+  # ===========================================================================
+
+  pdf:
+    desc: Convert samples to TeX then compile to PDF with xelatex
+    cmds:
+      - task: samples
+      - task: pdf:compile
+      - task: clean:samples-log
+        if: '{{.DEBUG}}'
+
+  pdf:compile:
+    desc: Compile all TeX files in testdata/input/ to PDF using xelatex
+    dir: '{{.SAMPLES_DIR}}'
+    vars:
+      TEX_ENGINE: '{{.TEX_ENGINE | default "xelatex"}}'
+    cmds:
+      - |
+        failed=""
+        for f in *.tex; do
+          [ -f "$f" ] || continue
+          echo "==> Compiling $f ..."
+          if {{eq .TEX_ENGINE "tectonic"}}; then
+            if {{.TEX_ENGINE}} --keep-intermediates "$f.tex"; then
+              echo "*** FAILED: $f ***"
+              failed="$failed $f"
+            fi
+          else
+            if ! {{.TEX_ENGINE}} -halt-on-error -interaction=nonstopmode "$f"; then
+              echo "*** FAILED: $f ***"
+              failed="$failed $f"
+            fi
+          fi
+        done
+        if [ -n "$failed" ]; then
+          echo ""
+          echo "=== Failed files:$failed ==="
+          exit 1
+        fi
+
+  # ===========================================================================
+  # Engine Verification Tasks
+  # ===========================================================================
+
+  verify:xelatex:
+    desc: Verify XeLaTeX compilation of all samples
+    deps: [samples]
+    dir: '{{.SAMPLES_DIR}}'
+    cmds:
+      - |
+        ok=0; fail=0
+        for f in *.tex; do
+          [ -f "$f" ] || continue
+          echo "==> XeLaTeX: $f"
+          if xelatex -halt-on-error -interaction=nonstopmode "$f" >/dev/null 2>&1; then
+            ok=$((ok+1))
+          else
+            echo "    FAILED: $f"
+            fail=$((fail+1))
+          fi
+        done
+        echo "==> XeLaTeX: $ok passed, $fail failed"
+        [ "$fail" -eq 0 ]
+
+  verify:pdflatex:
+    desc: Verify pdfLaTeX compilation (ASCII-only samples)
+    deps: [build]
+    dir: '{{.SAMPLES_DIR}}'
+    cmds:
+      - |
+        ok=0; fail=0
+        for f in popgen.red; do
+          echo "==> pdfLaTeX: $f"
+          ../../{{.BIN}} -engine pdflatex -lang reduce "$f"
+          if pdflatex -halt-on-error -interaction=nonstopmode "$f.tex" >/dev/null 2>&1; then
+            ok=$((ok+1))
+          else
+            echo "    FAILED: $f"
+            fail=$((fail+1))
+          fi
+        done
+        echo "==> pdfLaTeX: $ok passed, $fail failed"
+        [ "$fail" -eq 0 ]
+
+  verify:lualatex:
+    desc: Verify LuaLaTeX compilation (CJK samples)
+    deps: [build]
+    dir: '{{.SAMPLES_DIR}}'
+    cmds:
+      - |
+        ok=0; fail=0
+        for f in hanoi.go hanoi.c hanoi.sh hanoi.pas; do
+          echo "==> LuaLaTeX: $f"
+          ../../{{.BIN}} -engine lualatex "$f"
+          if lualatex -halt-on-error -interaction=nonstopmode "$f.tex" >/dev/null 2>&1; then
+            ok=$((ok+1))
+          else
+            echo "    FAILED: $f"
+            fail=$((fail+1))
+          fi
+        done
+        echo "==> LuaLaTeX: $ok passed, $fail failed"
+        [ "$fail" -eq 0 ]
+
+  verify:uplatex:
+    desc: Verify upLaTeX + dvipdfmx compilation (CJK samples)
+    deps: [build]
+    dir: '{{.SAMPLES_DIR}}'
+    cmds:
+      - |
+        ok=0; fail=0
+        for f in hanoi.go hanoi.c hanoi.sh hanoi.pas; do
+          echo "==> upLaTeX: $f"
+          ../../{{.BIN}} -engine uplatex "$f"
+          if uplatex -halt-on-error -interaction=nonstopmode "$f.tex" >/dev/null 2>&1; then
+            if dvipdfmx "$f.dvi" >/dev/null 2>&1; then
+              ok=$((ok+1))
+            else
+              echo "    FAILED (dvipdfmx): $f"
+              fail=$((fail+1))
+            fi
+          else
+            echo "    FAILED (uplatex): $f"
+            fail=$((fail+1))
+          fi
+        done
+        echo "==> upLaTeX: $ok passed, $fail failed"
+        [ "$fail" -eq 0 ]
+
+  verify:tectonic:
+    desc: Verify Tectonic compilation (requires tectonic installed)
+    deps: [build]
+    dir: '{{.SAMPLES_DIR}}'
+    cmds:
+      - |
+        if ! command -v tectonic &>/dev/null; then
+          echo "==> Tectonic: SKIPPED (not installed)"
+          exit 0
+        fi
+        ok=0; fail=0
+        for f in hanoi.go hanoi.c hanoi.sh hanoi.pas; do
+          echo "==> Tectonic: $f"
+          ../../{{.BIN}} -engine tectonic "$f"
+          if tectonic --keep-intermediates "$f.tex" >/dev/null 2>&1; then
+            ok=$((ok+1))
+          else
+            echo "    FAILED: $f"
+            fail=$((fail+1))
+          fi
+        done
+        echo "==> Tectonic: $ok passed, $fail failed"
+        [ "$fail" -eq 0 ]
+
+  verify:all:
+    desc: Run all engine verification tasks
+    cmds:
+      - task: verify:xelatex
+      - task: verify:pdflatex
+      - task: verify:lualatex
+      - task: verify:uplatex
+      - task: verify:tectonic
+
+  # ===========================================================================
+  # Test & Utility Tasks
+  # ===========================================================================
+
+  test:
+    desc: Run Go tests
+    cmds:
+      - go test ./...
+
+  clean:
+    desc: Remove built binaries
+    cmds:
+      - rm -f {{.BIN_NAME}} {{.BIN_NAME}}.exe
+      - rm -f {{.BIN_NAME}}-darwin-arm64 {{.BIN_NAME}}-darwin-amd64
+      - rm -f {{.BIN_NAME}}-linux-amd64
+      - rm -f {{.BIN_NAME}}-win-amd64.exe
+
+  clean:samples:
+    desc: Remove generated TeX, PDF, and LaTeX auxiliary files from testdata/input/
+    cmds:
+      - rm -f {{.SAMPLES_DIR}}/*.tex
+      - rm -f {{.SAMPLES_DIR}}/*.pdf
+      - rm -f {{.SAMPLES_DIR}}/*.aux
+      - rm -f {{.SAMPLES_DIR}}/*.log
+      - rm -f {{.SAMPLES_DIR}}/*.dvi
+
+  clean:samples-log:
+    desc: Remove generated TeX, PDF, and LaTeX auxiliary files from testdata/input/
+    cmds:
+      - rm -f {{.SAMPLES_DIR}}/*.aux
+      - rm -f {{.SAMPLES_DIR}}/*.log
+      - rm -f {{.SAMPLES_DIR}}/*.dvi
+
+  clean:all:
+    desc: Remove all generated files (binaries + samples)
+    cmds:
+      - task: clean
+      - task: clean:samples

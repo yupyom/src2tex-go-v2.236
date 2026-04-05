@@ -1,0 +1,654 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmainfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setsansfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setmonofont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKmainfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKsansfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKmonofont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm sample.html\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt <}!DOCTYPE{\tt\mc \ }html{\tt >}
+
+\noindent
+\mbox{}\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\  \parbox[t]{0.85\textwidth}{\ \centerline{\bf Towers of Hanoi --- HTML{\ /}CSS{\ /}JavaScript}} \rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\ 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc \ \begin{quote}
+\noindent
+This is a fully working implementation of the Towers of Hanoi
+puzzle that runs in any modern web browser.  The recursive algorithm
+moves $n$ discs from pole A to pole C via pole B, requiring exactly
+$2^n - 1$ moves.  Open this file in a browser to see it in action.
+\end{quote} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt <}\textbf{html}{\tt\mc \ }lang={\tt "}ja{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt <}\textbf{head}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{meta}{\tt\mc \ }charset={\tt "}UTF{\tt -}8{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{title}{\tt >}Hanoi{\tt\mc \ }Tower{\tt\mc \ }{\tt -}{\tt -}{\tt -}{\tt\mc \ }HTML/CSS/JavaScript{\tt <}/\textbf{title}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{style}{\tt\mc \ }type={\tt "}text/css{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \parbox[t]{0.85\textwidth}{\ \centerline{\bf Stylesheet}} \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  ページ全体のスタイル \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }body{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}family:{\tt\mc \ }{\tt "}Helvetica{\tt\mc \ }Neue{\tt "},{\tt\mc \ }Arial,{\tt\mc \ }sans{\tt -}serif;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }padding:{\tt\mc \ }20px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background{\tt -}color:{\tt\mc \ }{\tt\#}f5f5f5;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }h1{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }text{\tt -}align:{\tt\mc \ }center;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }color:{\tt\mc \ }{\tt\#}333;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  タワーのコンテナ \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }.towers{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }display:{\tt\mc \ }flex;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }justify{\tt -}content:{\tt\mc \ }center;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }gap:{\tt\mc \ }40px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }20px{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }.tower{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }width:{\tt\mc \ }200px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }min{\tt -}height:{\tt\mc \ }200px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border:{\tt\mc \ }1px{\tt\mc \ }solid{\tt\mc \ }{\tt\#}ccc;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border{\tt -}radius:{\tt\mc \ }8px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }padding:{\tt\mc \ }10px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background:{\tt\mc \ }{\tt\#}fff;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }text{\tt -}align:{\tt\mc \ }center;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }.tower{\tt\mc \ }h2{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }0{\tt\mc \ }0{\tt\mc \ }10px{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}size:{\tt\mc \ }14px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }color:{\tt\mc \ }{\tt\#}666;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  ディスクのスタイル \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }.disc{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }height:{\tt\mc \ }20px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }2px{\tt\mc \ }auto;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border{\tt -}radius:{\tt\mc \ }4px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }transition:{\tt\mc \ }all{\tt\mc \ }0.3s{\tt\mc \ }ease;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  操作ログ \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\#}log{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }max{\tt -}width:{\tt\mc \ }600px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }20px{\tt\mc \ }auto;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }padding:{\tt\mc \ }10px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background:{\tt\mc \ }{\tt\#}fff;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border:{\tt\mc \ }1px{\tt\mc \ }solid{\tt\mc \ }{\tt\#}ddd;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border{\tt -}radius:{\tt\mc \ }4px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}family:{\tt\mc \ }monospace;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}size:{\tt\mc \ }13px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }max{\tt -}height:{\tt\mc \ }300px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }overflow{\tt -}y:{\tt\mc \ }auto;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }.controls{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }text{\tt -}align:{\tt\mc \ }center;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }20px{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }button{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }padding:{\tt\mc \ }8px{\tt\mc \ }16px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}size:{\tt\mc \ }14px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }cursor:{\tt\mc \ }pointer;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border:{\tt\mc \ }1px{\tt\mc \ }solid{\tt\mc \ }{\tt\#}4a90d9;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background:{\tt\mc \ }{\tt\#}4a90d9;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }color:{\tt\mc \ }{\tt\#}fff;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border{\tt -}radius:{\tt\mc \ }4px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{style}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{head}{\tt >}
+
+\noindent
+\mbox{}{\tt <}\textbf{body}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{h1}{\tt >}Towers{\tt\mc \ }of{\tt\mc \ }Hanoi{\tt <}/\textbf{h1}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{div}{\tt\mc \ }class={\tt "}controls{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{label}{\tt >}Discs:{\tt\mc \ }{\tt <}\textbf{select}{\tt\mc \ }id={\tt "}num{\tt -}discs{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{option}{\tt\mc \ }value={\tt "}3{\tt "}{\tt >}3{\tt <}/\textbf{option}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{option}{\tt\mc \ }value={\tt "}4{\tt "}{\tt\mc \ }selected{\tt >}4{\tt <}/\textbf{option}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{option}{\tt\mc \ }value={\tt "}5{\tt "}{\tt >}5{\tt <}/\textbf{option}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{select}{\tt >}{\tt <}/\textbf{label}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{button}{\tt\mc \ }onclick={\tt "}startHanoi(){\tt "}{\tt >}Start{\tt <}/\textbf{button}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{div}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{div}{\tt\mc \ }class={\tt "}towers{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{div}{\tt\mc \ }class={\tt "}tower{\tt "}{\tt\mc \ }id={\tt "}tower{\tt -}a{\tt "}{\tt >}{\tt <}\textbf{h2}{\tt >}Tower{\tt\mc \ }A{\tt <}/\textbf{h2}{\tt >}{\tt <}/\textbf{div}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{div}{\tt\mc \ }class={\tt "}tower{\tt "}{\tt\mc \ }id={\tt "}tower{\tt -}b{\tt "}{\tt >}{\tt <}\textbf{h2}{\tt >}Tower{\tt\mc \ }B{\tt <}/\textbf{h2}{\tt >}{\tt <}/\textbf{div}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{div}{\tt\mc \ }class={\tt "}tower{\tt "}{\tt\mc \ }id={\tt "}tower{\tt -}c{\tt "}{\tt >}{\tt <}\textbf{h2}{\tt >}Tower{\tt\mc \ }C{\tt <}/\textbf{h2}{\tt >}{\tt <}/\textbf{div}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{div}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{div}{\tt\mc \ }id={\tt "}log{\tt "}{\tt >}{\tt <}/\textbf{div}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{script}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ \centerline{\bf JavaScript Section}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ ハノイの塔を再帰的に解き、
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \    操作手順をログに表示する \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }moves{\tt\mc \ }={\tt\mc \ }[];{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ 操作手順の配列 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\ 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt *} ハノイの塔を再帰的に解く
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt *} n: ディスクの枚数
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt *} src, dst, tmp: タワー名
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{function}{\tt\mc \ }hanoi(n,{\tt\mc \ }src,{\tt\mc \ }dst,{\tt\mc \ }tmp){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }(n{\tt\mc \ }{\tt <}={\tt\mc \ }0){\tt\mc \ }\textbf{return};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }hanoi(n{\tt\mc \ }{\tt -}{\tt\mc \ }1,{\tt\mc \ }src,{\tt\mc \ }tmp,{\tt\mc \ }dst);{\tt\mc \ }\rm\mc // \ 上 $n-1$ 枚を退避 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }moves.push({\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ 最大ディスクを移動 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }disc:{\tt\mc \ }n,{\tt\mc \ }\textbf{from}:{\tt\mc \ }src,{\tt\mc \ }to:{\tt\mc \ }dst
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175});
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }hanoi(n{\tt\mc \ }{\tt -}{\tt\mc \ }1,{\tt\mc \ }tmp,{\tt\mc \ }dst,{\tt\mc \ }src);{\tt\mc \ }\rm\mc // \ 退避分を目的地へ \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ {\bf タワーの初期化} \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{function}{\tt\mc \ }initTowers(numDiscs){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }towers{\tt\mc \ }={\tt\mc \ }{\tt\char'173}A:{\tt\mc \ }[],{\tt\mc \ }B:{\tt\mc \ }[],{\tt\mc \ }C:{\tt\mc \ }[]{\tt\char'175};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }(\textbf{var}{\tt\mc \ }i{\tt\mc \ }={\tt\mc \ }numDiscs;{\tt\mc \ }i{\tt\mc \ }{\tt >}={\tt\mc \ }1;{\tt\mc \ }i{\tt -}{\tt -}){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }towers[{\tt "}A{\tt "}].push(i);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }towers;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ {\bf ディスクの描画} \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{function}{\tt\mc \ }renderTowers(towers,{\tt\mc \ }numDiscs){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }names{\tt\mc \ }={\tt\mc \ }[{\tt "}A{\tt "},{\tt\mc \ }{\tt "}B{\tt "},{\tt\mc \ }{\tt "}C{\tt "}];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }colors{\tt\mc \ }={\tt\mc \ }[
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt "}{\tt\#}e74c3c{\tt "},{\tt\mc \ }{\tt "}{\tt\#}e67e22{\tt "},{\tt\mc \ }{\tt "}{\tt\#}f1c40f{\tt "},
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt "}{\tt\#}2ecc71{\tt "},{\tt\mc \ }{\tt "}{\tt\#}3498db{\tt "},{\tt\mc \ }{\tt "}{\tt\#}9b59b6{\tt "},
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt "}{\tt\#}1abc9c{\tt "},{\tt\mc \ }{\tt "}{\tt\#}34495e{\tt "}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }(\textbf{var}{\tt\mc \ }t{\tt\mc \ }={\tt\mc \ }0;{\tt\mc \ }t{\tt\mc \ }{\tt <}{\tt\mc \ }3;{\tt\mc \ }t++){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }el{\tt\mc \ }={\tt\mc \ }document.getElementById(
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt "}tower{\tt -}{\tt "}{\tt\mc \ }+{\tt\mc \ }names[t].toLowerCase()
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ });
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }h2{\tt\mc \ }={\tt\mc \ }el.querySelector({\tt "}h2{\tt "}).outerHTML;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }el.innerHTML{\tt\mc \ }={\tt\mc \ }h2;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }stack{\tt\mc \ }={\tt\mc \ }towers[names[t]];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }(\textbf{var}{\tt\mc \ }i{\tt\mc \ }={\tt\mc \ }stack.length{\tt\mc \ }{\tt -}{\tt\mc \ }1;{\tt\mc \ }i{\tt\mc \ }{\tt >}={\tt\mc \ }0;{\tt\mc \ }i{\tt -}{\tt -}){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }disc{\tt\mc \ }={\tt\mc \ }document.createElement({\tt "}div{\tt "});
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }disc.className{\tt\mc \ }={\tt\mc \ }{\tt "}disc{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }w{\tt\mc \ }={\tt\mc \ }30{\tt\mc \ }+{\tt\mc \ }stack[i]{\tt\mc \ }*{\tt\mc \ }20;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }disc.style.width{\tt\mc \ }={\tt\mc \ }w{\tt\mc \ }+{\tt\mc \ }{\tt "}px{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }disc.style.backgroundColor{\tt\mc \ }=
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }colors[(stack[i]{\tt\mc \ }{\tt -}{\tt\mc \ }1){\tt\mc \ }{\tt\%}{\tt\mc \ }colors.length];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }el.appendChild(disc);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ {\bf メイン実行関数} \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ [問題] {\tt hanoi(n, src, dst, tmp)} の
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \    呼び出し回数が $2^n - 1$ であること \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ を数学的帰納法で証明せよ。\hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{function}{\tt\mc \ }startHanoi(){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }n{\tt\mc \ }={\tt\mc \ }parseInt(
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }document.getElementById({\tt "}num{\tt -}discs{\tt "}).value
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ });
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }moves{\tt\mc \ }={\tt\mc \ }[];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }hanoi(n,{\tt\mc \ }{\tt "}A{\tt "},{\tt\mc \ }{\tt "}C{\tt "},{\tt\mc \ }{\tt "}B{\tt "});
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }towers{\tt\mc \ }={\tt\mc \ }initTowers(n);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }renderTowers(towers,{\tt\mc \ }n);
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }log{\tt\mc \ }={\tt\mc \ }document.getElementById({\tt "}log{\tt "});
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }log.innerHTML{\tt\mc \ }={\tt\mc \ }{\tt "}{\tt <}b{\tt >}Moves:{\tt\mc \ }{\tt "}{\tt\mc \ }+{\tt\mc \ }moves.length{\tt\mc \ }+{\tt\mc \ }{\tt "}{\tt <}/b{\tt >}{\tt\char92}n{\tt "};
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }step{\tt\mc \ }={\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }timer{\tt\mc \ }={\tt\mc \ }setInterval(\textbf{function}(){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }(step{\tt\mc \ }{\tt >}={\tt\mc \ }moves.length){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }clearInterval(timer);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }log.innerHTML{\tt\mc \ }+={\tt\mc \ }{\tt "}{\tt\char92}n{\tt <}b{\tt >}Done!{\tt <}/b{\tt >}{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }m{\tt\mc \ }={\tt\mc \ }moves[step];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }disc{\tt\mc \ }={\tt\mc \ }towers[m.\textbf{from}].pop();
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }towers[m.to].push(disc);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }renderTowers(towers,{\tt\mc \ }n);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }log.innerHTML{\tt\mc \ }+=
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt "}{\tt\#}{\tt "}{\tt\mc \ }+{\tt\mc \ }(step+1){\tt\mc \ }+{\tt\mc \ }{\tt "}:{\tt\mc \ }Move{\tt\mc \ }disc{\tt\mc \ }{\tt "}{\tt\mc \ }+
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }m.disc{\tt\mc \ }+{\tt\mc \ }{\tt "}{\tt\mc \ }from{\tt\mc \ }{\tt "}{\tt\mc \ }+{\tt\mc \ }m.\textbf{from}{\tt\mc \ }+
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt "}{\tt\mc \ }to{\tt\mc \ }{\tt "}{\tt\mc \ }+{\tt\mc \ }m.to{\tt\mc \ }+{\tt\mc \ }{\tt "}{\tt\char92}n{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }log.scrollTop{\tt\mc \ }={\tt\mc \ }log.scrollHeight;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }step++;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175},{\tt\mc \ }500);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{script}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{body}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{html}{\tt >}
+
+\rm\mc
+
+\end{document}

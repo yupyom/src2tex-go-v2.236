@@ -1,0 +1,90 @@
+#!/usr/bin/tclsh
+# {\hrulefill }
+# {\ % beginning of TeX mode }
+# {\ \centerline{\bf Towers of Hanoi (Tcl)} }
+# {\ \begin{quote} }
+# {\ This program gives an answer to the following famous problem (towers of }
+# {\ Hanoi). }
+# {\ There is a legend that when one of the temples in Hanoi was constructed, }
+# {\ three poles were erected and a tower consisting of 64 golden discs was }
+# {\ arranged on one pole, their sizes decreasing regularly from bottom to top. }
+# {\ The monks were to move the tower of discs to the opposite pole, moving }
+# {\ only one at a time, and never putting any size disc above a smaller one. }
+# {\ The job was to be done in the minimum numbers of moves. What strategy for }
+# {\ moving discs will accomplish this optimum transfer? }
+# {\ \end{quote} }{\ % end of TeX mode }{\hrulefill }
+# {\hrulefill\ hanoi.tcl \ \hrulefill}
+
+set ARRAY 8                             ;# {\ disc の数 \hfill }
+
+for {set p 0} {$p < 3} {incr p} {       ;# {\ disc に関するデータの置き場所\hfill }
+    for {set q 0} {$q < $ARRAY} {incr q} {
+        set disc($p,$q) 0
+    }
+}
+
+proc init_array {} {                    ;# {\ disc に関するデータの初期化\hfill }
+    global ARRAY disc
+    for {set j 0} {$j < $ARRAY} {incr j} {
+        set disc(0,$j) [expr {$ARRAY - $j}]
+        set disc(1,$j) 0
+        set disc(2,$j) 0
+    }
+}
+
+set counter 0                           ;# {\ 移動回数カウンタ \hfill }
+
+proc print_result {} {                  ;# {\ 結果の表示 \hfill }
+    global ARRAY disc counter
+    incr counter
+    puts "---#${counter}---"
+    for {set i 0} {$i <= 2} {incr i} {
+        set line "\[$i\] "
+        for {set j 0} {$j < $ARRAY} {incr j} {
+            if {$disc($i,$j) != 0} {
+                append line "$disc($i,$j) "
+            } else {
+                break
+            }
+        }
+        puts $line
+    }
+}
+
+set ptr(0) 0                            ;# {\ disc 移動用ポインタ（インデックス）\hfill }
+set ptr(1) 0
+set ptr(2) 0
+
+proc move_one_disc {i j} {              ;# {\ 1枚の disc を pole $i$ から\hfill }
+                                        ;# {\ pole $j$ に移動する \hfill }
+    global disc ptr
+    incr ptr($i) -1
+    set disc($j,$ptr($j)) $disc($i,$ptr($i))
+    incr ptr($j)
+    set disc($i,$ptr($i)) 0
+}
+
+proc move_discs {n i j k} {             ;# {\ \underline{\textsf{上から $n$ 枚目までの disc}}を、\hfill }
+                                        ;# {\ pole $i$ から pole $j$ に\hfill }
+                                        ;# {\ pole $k$ を経由して、移動する\hfill }
+    if {$n >= 1} {
+        move_discs [expr {$n - 1}] $i $k $j
+                                        ;# {\ 関数 {\tt move\_discs}の中で、さらに自分自身 \hfill }
+        move_one_disc $i $j             ;# {\ {\tt move\_discs} が使われている。このような \hfill }
+        print_result                    ;# {\ 手法は、「再帰的呼びだし」といわれる。 \hfill }
+        move_discs [expr {$n - 1}] $k $j $i
+    }
+}
+
+# {\ \par\begin{center}\includegraphics[scale=0.3]{hanoi1}\quad\includegraphics[scale=0.3]{hanoi2}\end{center} }
+#
+# {\ たとえば、関数 {\tt move\_discs} を呼び出すことは、 }
+# {\ 上図のような操作をすることに対応する。\hfill }
+
+set ptr(0) $ARRAY
+set ptr(1) 0
+set ptr(2) 0
+
+init_array
+move_discs $ARRAY 0 1 2                 ;# {\ {\tt ARRAY} 枚の disc をpole 0 から pole 1 に pole 2\hfill }
+                                        ;# {\ を経由して、移動する \hfill }

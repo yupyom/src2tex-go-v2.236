@@ -1,0 +1,325 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmonofont{Courier New}
+\setCJKmainfont{Hiragino Sans W3}
+\setCJKsansfont{Hiragino Sans W3}
+\setCJKmonofont{Hiragino Sans W3}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm input{\tt /}hanoi.pl\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}!/usr/bin/perl
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \hrulefill 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ % beginning of TeX mode 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \centerline{\bf Towers of Hanoi (Perl)} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \begin{quote} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \noindent 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ This program gives an answer to the following famous problem (towers of 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ Hanoi). 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ There is a legend that when one of the temples in Hanoi was constructed, 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ three poles were erected and a tower consisting of 64 golden discs was 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ arranged on one pole, their sizes decreasing regularly from bottom to top. 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ The monks were to move the tower of discs to the opposite pole, moving 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ only one at a time, and never putting any size disc above a smaller one. 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ The job was to be done in the minimum numbers of moves. What strategy for 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ moving discs will accomplish this optimum transfer? 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ \end{quote} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \ % end of TeX mode 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \hrulefill 
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt\#} \hrulefill\ hanoi.pl \ \hrulefill
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}use{\tt\mc \ }strict;
+
+\noindent
+\mbox{}use{\tt\mc \ }warnings;
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}my{\tt\mc \ }{\tt\$}ARRAY{\tt\mc \ }={\tt\mc \ }8;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} disc count
+\tt\mc 
+
+\noindent
+\mbox{}my{\tt\mc \ }@disc;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} disc data storage
+\tt\mc 
+
+\noindent
+\mbox{}for{\tt\mc \ }my{\tt\mc \ }{\tt\$}i{\tt\mc \ }(0..2){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}disc[{\tt\$}i]{\tt\mc \ }={\tt\mc \ }[(0){\tt\mc \ }x{\tt\mc \ }{\tt\$}ARRAY];
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}sub{\tt\mc \ }init{\tt\_}array{\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} initialize disc data
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }for{\tt\mc \ }my{\tt\mc \ }{\tt\$}j{\tt\mc \ }(0..{\tt\$}ARRAY{\tt -}1){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}disc[0][{\tt\$}j]{\tt\mc \ }={\tt\mc \ }{\tt\$}ARRAY{\tt\mc \ }{\tt -}{\tt\mc \ }{\tt\$}j;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}disc[1][{\tt\$}j]{\tt\mc \ }={\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}disc[2][{\tt\$}j]{\tt\mc \ }={\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}my{\tt\mc \ }{\tt\$}counter{\tt\mc \ }={\tt\mc \ }0;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} move counter
+\tt\mc 
+
+\noindent
+\mbox{}my{\tt\mc \ }@ptr{\tt\mc \ }={\tt\mc \ }(0,{\tt\mc \ }0,{\tt\mc \ }0);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} stack pointers
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}sub{\tt\mc \ }print{\tt\_}result{\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} print current state
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}counter++;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }print{\tt\mc \ }{\tt "}{\tt -}{\tt -}{\tt -}{\tt\$}{\tt\char'173}counter{\tt\char'175}{\tt -}{\tt -}{\tt -}{\tt\char92}n{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }for{\tt\mc \ }my{\tt\mc \ }{\tt\$}i{\tt\mc \ }(0..2){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }print{\tt\mc \ }{\tt "}[{\tt\$}i]{\tt\mc \ }{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }for{\tt\mc \ }my{\tt\mc \ }{\tt\$}j{\tt\mc \ }(0..{\tt\$}ARRAY{\tt -}1){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }if{\tt\mc \ }({\tt\$}disc[{\tt\$}i][{\tt\$}j]{\tt\mc \ }!={\tt\mc \ }0){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }print{\tt\mc \ }{\tt "}{\tt\$}disc[{\tt\$}i][{\tt\$}j]{\tt\mc \ }{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}{\tt\mc \ }else{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }last;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }print{\tt\mc \ }{\tt "}{\tt\char92}n{\tt "};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}sub{\tt\mc \ }move{\tt\_}one{\tt\_}disc{\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} move 1 disc: pole i to pole j
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }my{\tt\mc \ }({\tt\$}i,{\tt\mc \ }{\tt\$}j){\tt\mc \ }={\tt\mc \ }@{\tt\_};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}ptr[{\tt\$}i]{\tt -}{\tt -};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}disc[{\tt\$}j][{\tt\$}ptr[{\tt\$}j]]{\tt\mc \ }={\tt\mc \ }{\tt\$}disc[{\tt\$}i][{\tt\$}ptr[{\tt\$}i]];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}ptr[{\tt\$}j]++;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}disc[{\tt\$}i][{\tt\$}ptr[{\tt\$}i]]{\tt\mc \ }={\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}sub{\tt\mc \ }move{\tt\_}discs{\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} move n discs
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }my{\tt\mc \ }({\tt\$}n,{\tt\mc \ }{\tt\$}i,{\tt\mc \ }{\tt\$}j,{\tt\mc \ }{\tt\$}k){\tt\mc \ }={\tt\mc \ }@{\tt\_};{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} pole i to pole j
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }if{\tt\mc \ }({\tt\$}n{\tt\mc \ }{\tt >}={\tt\mc \ }1){\tt\mc \ }{\tt\char'173}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} via pole k
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }move{\tt\_}discs({\tt\$}n{\tt\mc \ }{\tt -}{\tt\mc \ }1,{\tt\mc \ }{\tt\$}i,{\tt\mc \ }{\tt\$}k,{\tt\mc \ }{\tt\$}j);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }move{\tt\_}one{\tt\_}disc({\tt\$}i,{\tt\mc \ }{\tt\$}j);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} move\_discs()
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }print{\tt\_}result();{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt\#} print result
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }move{\tt\_}discs({\tt\$}n{\tt\mc \ }{\tt -}{\tt\mc \ }1,{\tt\mc \ }{\tt\$}k,{\tt\mc \ }{\tt\$}j,{\tt\mc \ }{\tt\$}i);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}init{\tt\_}array();
+
+\noindent
+\mbox{}{\tt\$}ptr[0]{\tt\mc \ }={\tt\mc \ }{\tt\$}ARRAY;
+
+\noindent
+\mbox{}print{\tt\_}result();
+
+\noindent
+\mbox{}move{\tt\_}discs({\tt\$}ARRAY,{\tt\mc \ }0,{\tt\mc \ }2,{\tt\mc \ }1);
+
+\rm\mc
+
+\end{document}

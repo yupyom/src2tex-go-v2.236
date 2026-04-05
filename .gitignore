@@ -1,0 +1,37 @@
+# Binaries
+src2latex
+src2latex.exe
+src2latex-*
+/src2tex
+/src2tex.exe
+
+# go-task cache
+.task/
+
+# EPS→PDF auto-converted files (keep original .eps)
+hanoi1.pdf
+hanoi2.pdf
+newton.pdf
+simpson.pdf
+solution.pdf
+
+# Test output
+testdata/input/*.log
+testdata/input/*.aux
+testdata/input/*.dvi
+*.synctex.gz
+__*
+
+# LaTeX generated (root level)
+*.aux
+*.log
+
+# macOS
+.DS_Store
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

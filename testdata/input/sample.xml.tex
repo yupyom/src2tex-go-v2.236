@@ -1,0 +1,99 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmainfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setsansfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setmonofont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKmainfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKsansfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKmonofont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm sample.xml\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt <}?xml{\tt\mc \ }version={\tt "}1.0{\tt "}{\tt\mc \ }encoding={\tt "}UTF{\tt -}8{\tt "}?{\tt >}
+
+\noindent
+\mbox{}\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\  \parbox[t]{0.85\textwidth}{\ \centerline{\bf XML Sample} } \rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\ 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt\mc \ }This XML file demonstrates comment handling.
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt\mc \ }\ Multiple lines with \TeX\ passthrough. 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt <}\textbf{catalog}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{book}{\tt\mc \ }id={\tt "}1{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{title}{\tt >}The{\tt\mc \ }Art{\tt\mc \ }of{\tt\mc \ }Programming{\tt <}/\textbf{title}{\tt >}{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\  タイトル \rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{author}{\tt >}D.{\tt\mc \ }Knuth{\tt <}/\textbf{author}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{price}{\tt >}59.99{\tt <}/\textbf{price}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{book}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{book}{\tt\mc \ }id={\tt "}2{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{title}{\tt >}Structure{\tt\mc \ }and{\tt\mc \ }Interpretation{\tt <}/\textbf{title}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{author}{\tt >}H.{\tt\mc \ }Abelson{\tt <}/\textbf{author}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{price}{\tt >}45.00{\tt <}/\textbf{price}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{book}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{catalog}{\tt >}
+
+\rm\mc
+
+\end{document}

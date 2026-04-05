@@ -1,0 +1,8 @@
+{
+  "name": "upLaTeX",
+  "description": "Unicode pLaTeX + dvipdfmx (CJK native, no fontspec)",
+  "compile_cmd": "uplatex",
+  "supports_cjk": true,
+  "supports_fontspec": false,
+  "preamble_template": "preamble.tmpl"
+}

@@ -1,0 +1,247 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setsansfont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\setmonofont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\setCJKmainfont[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/haranoaji/, Extension=.otf, BoldFont=HaranoAjiMincho-Bold.otf]{HaranoAjiMincho-Regular}
+\setCJKsansfont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\setCJKmonofont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm simpson.c\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt /}{\tt *}\  \hrulefill *
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc \bf Simpsonの公式
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc \ % beginning of TeX mode
+
+\noindent
+定積分 $\displaystyle\int_a^b f(x)\,dx$ を計算する一つの方法として、
+次の近似式が良く使われる。
+
+$$\int_a^b f(x)\,dx\sim{h\over3}\,(y_0+4y_1+2y_2+4y_3+2y_4+4y_5+
+          \cdots +2y_{n-2}+4y_{n-1}+y_n)\ ,$$
+
+\noindent
+ここで、自然数 $n$ は偶数とし、
+$\displaystyle x_i=a+{i\over n}\,(b-a),\ y_i=f(x_i)\quad (i=0, 1, 2, \cdots, n)$
+とする。
+この公式の証明は、比較的やさしい。
+じっさい、Taylor の定理から導かれる等式
+
+$$\int_{\xi-{1\over h}}^{\xi+{1\over h}}f(x)\,dx
+  \sim\int_{\xi-{1\over h}}^{\xi+{1\over h}}p(x)\,dx
+  ={h\over3}\,\bigl(f(\xi-{1\over h})+4f(\xi)+f(\xi+{1\over h})\bigr)+O(h^5)$$
+
+\noindent
+を $\,\displaystyle{n\over2}\,$ 個足し合わせることにより、
+この公式は証明される。
+
+{\par\begin{center}\includegraphics[scale=.7]{simpson}\end{center}}
+
+\noindent
+ここで、$p(x)$ は次のような条件を満足する２次の多項式を表す:
+$$
+p\Bigl(\xi-{1\over h}\Bigr)=f\Bigl(\xi-{1\over h}\Bigr),
+\ p(\xi)=f(\xi),
+\ p\Bigl(\xi+{1\over h}\Bigr)=f\Bigl(\xi+{1\over h}\Bigr)\ .
+$$
+
+\noindent
+{\tt A, B, F(X), N} の定義をいろいろと変えて、各人で数値実験を行ってみよう。
+
+% end of TeX mode 
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt *} \hrulefill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt /}{\tt *}\  \hrulefill\ simpson.c\ \hrulefill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\#}include{\tt\mc \ }{\tt <}stdio.h{\tt >}
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }A{\tt\mc \ }0.{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  積分をする区間 $[a, b]$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }B{\tt\mc \ }1.
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }F(X){\tt\mc \ }((X)*(X)){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  被積分関数 $f(x)$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }N{\tt\mc \ }20{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ 区間 $[a, b]$ の分割数 $n$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\textbf{double}{\tt\mc \ }simpson{\tt\_}rule(\textbf{void}){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ Simpson の公式を用いて $\displaystyle\int_a^b f(x)\,dx$ を計算する関数 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{long}{\tt\mc \ }i;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  long 整数を使う \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{double}{\tt\mc \ }h,{\tt\mc \ }s,{\tt\mc \ }y[N{\tt\mc \ }+{\tt\mc \ }1];{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ メッシュ $h$, 積分値 $s$, 分点 $\displaystyle{i\over n}$ での関数値 $y_i$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }h{\tt\mc \ }={\tt\mc \ }1.{\tt\mc \ }/{\tt\mc \ }(\textbf{double}){\tt\mc \ }N;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ $\displaystyle h={1\over n}$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }(i{\tt\mc \ }={\tt\mc \ }0;{\tt\mc \ }i{\tt\mc \ }{\tt <}={\tt\mc \ }N;{\tt\mc \ }++i){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ $\displaystyle y_i=f\bigl({i\over n}\bigr)\quad (i=0, 1, 2, \cdots, n)$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }y[i]{\tt\mc \ }={\tt\mc \ }F((\textbf{double}){\tt\mc \ }i{\tt\mc \ }/{\tt\mc \ }(\textbf{double}){\tt\mc \ }N);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  以下は \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $\displaystyle
+             s={h\over3}(y_0+4y_1+2y_2+4y_3+
+             \cdots +4y_{n-1}+y_n)$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  の計算 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }={\tt\mc \ }y[0];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{for}{\tt\mc \ }(i{\tt\mc \ }={\tt\mc \ }1;{\tt\mc \ }i{\tt\mc \ }{\tt <}{\tt\mc \ }N;{\tt\mc \ }++i)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }(i{\tt\mc \ }{\tt\%}{\tt\mc \ }2{\tt\mc \ }=={\tt\mc \ }1){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ ただし {\tt i \% 2}= $i\ $を 2 で割った余り \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }+={\tt\mc \ }4.{\tt\mc \ }*{\tt\mc \ }y[i];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }\textbf{else}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }+={\tt\mc \ }2.{\tt\mc \ }*{\tt\mc \ }y[i];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }+={\tt\mc \ }y[N];
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }*={\tt\mc \ }(h{\tt\mc \ }/{\tt\mc \ }3.);
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }s;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $s$ の値を返す \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\textbf{int}{\tt\mc \ }main(\textbf{void})
+
+\noindent
+\mbox{}{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{double}{\tt\mc \ }s;
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }s{\tt\mc \ }={\tt\mc \ }simpson{\tt\_}rule();{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ 上で定義した関数simpson\_rule() を使う \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }printf({\tt "}{\tt\%}.16f{\tt\char92}n{\tt "},{\tt\mc \ }s);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ $s$ を小数点以下16桁表示する\hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\rm\mc
+
+\end{document}

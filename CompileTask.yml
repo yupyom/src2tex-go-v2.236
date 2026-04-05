@@ -1,0 +1,222 @@
+# CompileTask.yml - Compile and run hanoi.* programs in all supported languages
+#
+# !!NOTE: Tested only on macOS!!
+#
+# Usage:
+#   task -t CompileTask.yml              # run all (default)
+#   task -t CompileTask.yml compile:go   # run single language
+#   task -t CompileTask.yml compile:all  # run all languages
+#   task -t CompileTask.yml clean        # remove temp build artifacts
+#
+# Prerequisites (all detected in this environment):
+#   go, gcc, g++, javac/java, dotnet (v10+), dart, rustc,
+#   node, tsx, kotlinc/kotlin, swift, python3, ruby, perl,
+#   bash, tclsh, fpc, octave, chez, php,
+#   redcsl (/Users/yupyom/bin/redcsl — Reduce CSL rev 7327)
+#
+# Note: hanoi.html is not a runnable program.
+
+version: '3'
+
+vars:
+  INPUT_DIR: testdata/input
+  TMP: /tmp/src2tex_hanoi
+
+tasks:
+  # ===========================================================================
+  # Default / All
+  # ===========================================================================
+
+  default:
+    desc: Compile and run all hanoi programs
+    cmds:
+      - task: compile:all
+
+  compile:all:
+    desc: Compile and run all hanoi programs, reporting pass/fail per language
+    vars:
+      LANGS: go c cpp java cs dart rs js ts kt swift py rb pl sh tcl pas m scm red php
+    cmds:
+      - |
+        ok=0; fail=0; failed=""
+        for lang in {{.LANGS}}; do
+          echo "==> compile:$lang"
+          if task -t CompileTask.yml "compile:$lang"; then
+            ok=$((ok+1))
+          else
+            echo "    FAILED: $lang"
+            fail=$((fail+1))
+            failed="$failed $lang"
+          fi
+          echo ""
+        done
+        echo "============================================"
+        echo "Results: $ok passed, $fail failed"
+        if [ -n "$failed" ]; then
+          echo "Failed:$failed"
+          exit 1
+        fi
+
+  # ===========================================================================
+  # C family (compiled)
+  # ===========================================================================
+
+  compile:go:
+    desc: Run hanoi.go (Go)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - go run hanoi.go
+
+  compile:c:
+    desc: Compile and run hanoi.c (C / gcc)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - mkdir -p {{.TMP}}
+      - gcc -o {{.TMP}}/hanoi_c hanoi.c
+      - '{{.TMP}}/hanoi_c'
+
+  compile:cpp:
+    desc: Compile and run hanoi.cpp (C++ / g++)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - mkdir -p {{.TMP}}
+      - g++ -o {{.TMP}}/hanoi_cpp hanoi.cpp
+      - '{{.TMP}}/hanoi_cpp'
+
+  compile:java:
+    desc: Compile and run hanoi.java (Java / OpenJDK)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - mkdir -p {{.TMP}}/java
+      - javac -d {{.TMP}}/java hanoi.java
+      - java -cp {{.TMP}}/java hanoi
+
+  compile:cs:
+    desc: Run hanoi.cs (C# / .NET 10 single-file run)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - dotnet run hanoi.cs
+
+  compile:dart:
+    desc: Run hanoi.dart (Dart)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - dart run hanoi.dart
+
+  compile:rs:
+    desc: Compile and run hanoi.rs (Rust / rustc)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - mkdir -p {{.TMP}}
+      - rustc -o {{.TMP}}/hanoi_rs hanoi.rs
+      - '{{.TMP}}/hanoi_rs'
+
+  compile:js:
+    desc: Run hanoi.js (JavaScript / Node.js)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - node hanoi.js
+
+  compile:ts:
+    desc: Run hanoi.ts (TypeScript / tsx)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - tsx hanoi.ts
+
+  compile:kt:
+    desc: Compile and run hanoi.kt (Kotlin)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - mkdir -p {{.TMP}}
+      - kotlinc hanoi.kt -include-runtime -d {{.TMP}}/hanoi_kt.jar
+      - kotlin -cp {{.TMP}}/hanoi_kt.jar HanoiKt
+
+  compile:swift:
+    desc: Run hanoi.swift (Swift)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - swift hanoi.swift
+
+  # ===========================================================================
+  # Hash family (interpreted)
+  # ===========================================================================
+
+  compile:py:
+    desc: Run hanoi.py (Python 3)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - python3 hanoi.py
+
+  compile:rb:
+    desc: Run hanoi.rb (Ruby)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - ruby hanoi.rb
+
+  compile:pl:
+    desc: Run hanoi.pl (Perl)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - perl hanoi.pl
+
+  compile:sh:
+    desc: Run hanoi.sh (Shell / bash)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - bash hanoi.sh
+
+  compile:tcl:
+    desc: Run hanoi.tcl (Tcl / tclsh)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - tclsh hanoi.tcl
+
+  # ===========================================================================
+  # Other families
+  # ===========================================================================
+
+  compile:pas:
+    desc: Compile and run hanoi.pas (Pascal / Free Pascal)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - mkdir -p {{.TMP}}/pas
+      - fpc -FE{{.TMP}}/pas/ -FU{{.TMP}}/pas/ hanoi.pas
+      - '{{.TMP}}/pas/hanoi'
+
+  compile:m:
+    desc: Run hanoi.m (Octave)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - octave --no-gui hanoi.m
+
+  compile:scm:
+    desc: Run hanoi.scm (Scheme / Chez Scheme)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - chez --script hanoi.scm
+
+  compile:red:
+    desc: Run hanoi.red (REDUCE / redcsl)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - redcsl -w- -q < hanoi.red
+
+  compile:php:
+    desc: Run hanoi.php (PHP)
+    dir: '{{.INPUT_DIR}}'
+    cmds:
+      - php hanoi.php
+
+  # ===========================================================================
+  # Setup / Cleanup
+  # ===========================================================================
+
+  setup:
+    desc: Create temp directories for compiled binaries
+    cmds:
+      - mkdir -p {{.TMP}}/java {{.TMP}}/pas
+
+  clean:
+    desc: Remove temp build artifacts in {{.TMP}}
+    cmds:
+      - rm -rf {{.TMP}}

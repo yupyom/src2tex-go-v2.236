@@ -1,0 +1,267 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setsansfont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\setmonofont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\setCJKmainfont[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/haranoaji/, Extension=.otf, BoldFont=HaranoAjiMincho-Bold.otf]{HaranoAjiMincho-Regular}
+\setCJKsansfont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\setCJKmonofont[Path=/Users/yupyom/.src2tex/fonts/hackgen/, BoldFont=HackGen-Bold.ttf]{HackGen-Regular.ttf}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm newton.c\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt /}{\tt *}\  \hrulefill *
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc \bf Newton-Raphson 法
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc 方程式 $f(x)=0$ を解くためには、漸化式
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc $\displaystyle\qquad
+  x_0=a,\quad x_{n+1}=x_n-{f(x_n)\over f'(x_n)}
+  \qquad\cdots\cdots\ (\star)$
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc を、適当な初期値 $a$ に対して解いて、数列 $\{x_n\}$ を構成する。
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc 初期値 $a$ がうまく与えられれば、この数列は上述の方程式の
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc １つの解 $\alpha$ に、収束することが知られている, \it i.e.,
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc $\displaystyle\qquad
+  \exists\ \alpha=\lim_{n\to\infty}x_n
+  \quad such\ that\quad f(\alpha)=0\ .$
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc 漸化式 $(\star)$ の意味とその収束の様子は、次の図と式を見れば
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc 一目瞭然である。
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc \par\begin{center}\includegraphics[scale=.7]{newton}\end{center}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc $\displaystyle\qquad
+  y-f(x_n)=f'(x_n)(x-x_n)
+  \qquad\cdots\cdots\ \hbox{点}\ (x_n,f(x_n))\ \hbox{を通る接線の方程式}$
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc $\displaystyle\qquad
+  x_n-{f(x_n)\over f'(x_n)}
+  \qquad\cdots\cdots\ \hbox{上記の接線と}\ x\ \hbox{軸との交点の}
+  \ x\ \hbox{座標}$
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc 数列 $\{x_n\}$ の収束性の証明および収束のオーダーの評価は、
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc それほど簡単なことではない。$\epsilon$-$\delta$ 論法と解析学に関する
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc 知識が必要とされる。興味のある学生には、参考文献を紹介する。
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc 以下のCソース newton.c は、方程式
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc $\qquad\displaystyle x^2-5=0$
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc の解の１つが $\sqrt{5}$ であることに注目して、Newton-Raphson 法で $\sqrt{5}$
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc を求めるプログラムである。\tt A, F(X), DF(X) の定義をいろいろ
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc と変えて、各人で数値実験を行ってみよう。
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt *} \hrulefill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt /}{\tt *}\  \hrulefill\ newton.c\ \hrulefill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\#}include{\tt\mc \ }{\tt <}stdio.h{\tt >}
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }A{\tt\mc \ }4.{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  初期値 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }F(X){\tt\mc \ }((X)*(X){\tt -}5.){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  与えられた関数 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\#}define{\tt\mc \ }DF(X){\tt\mc \ }(2.*(X)){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  その導関数 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\textbf{int}{\tt\mc \ }main(\textbf{void})
+
+\noindent
+\mbox{}{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{double}{\tt\mc \ }x,{\tt\mc \ }y;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  倍精度で計算する \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }x{\tt\mc \ }={\tt\mc \ }A;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $\displaystyle x_0=a$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }printf({\tt "}{\tt\%}.16f{\tt\char92}n{\tt "},{\tt\mc \ }x);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $x_0$ の表示 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }y{\tt\mc \ }={\tt\mc \ }x{\tt\mc \ }{\tt -}{\tt\mc \ }F(x){\tt\mc \ }/{\tt\mc \ }DF(x);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $\displaystyle x_1=x_0 - {f(x_0)\over f'(x_0)}$\hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }printf({\tt "}{\tt\%}.16f{\tt\char92}n{\tt "},{\tt\mc \ }y);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $x_1$ の表示 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{while}{\tt\mc \ }(x{\tt\mc \ }!={\tt\mc \ }y){\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \ iteration をやっても値が変わらなくなったら終了\hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }x{\tt\mc \ }={\tt\mc \ }y;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }y{\tt\mc \ }={\tt\mc \ }x{\tt\mc \ }{\tt -}{\tt\mc \ }F(x){\tt\mc \ }/{\tt\mc \ }DF(x);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $\displaystyle x_{n+1}=x_n - {f(x_n)\over f'(x_n)}$ \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }printf({\tt "}{\tt\%}.16f{\tt\char92}n{\tt "},{\tt\mc \ }y);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  $x_{n+1}$ の表示 \hfill \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\rm\mc
+
+\end{document}

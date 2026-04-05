@@ -1,0 +1,454 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setmainfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setsansfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setmonofont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKmainfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKsansfont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\setCJKmonofont[Path=/Users/yupyom/.src2tex/fonts/firple/, BoldFont=Firple-Bold.ttf]{Firple-Regular.ttf}
+\XeTeXlinebreaklocale ""
+\xeCJKsetup{CJKglue={},CJKecglue={}}
+\newdimen\charwd
+{\tt\global\setbox0=\hbox{x}\global\charwd=\wd0}
+\frenchspacing
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[R]{\rm src2tex version 2.236}
+\fancyfoot[R]{\rm sample.php\qquad page \thepage}
+% plain TeX compatibility
+\makeatletter
+\providecommand{\eqalign}[1]{\vcenter{\openup1\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}}
+\makeatother
+\ifx\sevenrm\undefined
+  \font\sevenrm=cmr7 scaled \magstep0
+\fi
+\def\mc{\relax}
+\def\gt{\relax}
+\def\sc{\scshape}
+\begin{document}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt <}!DOCTYPE{\tt\mc \ }html{\tt >}
+
+\noindent
+\mbox{}\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\  \parbox[t]{0.85\textwidth}{\ \centerline{\bf Towers of Hanoi --- PHP Edition}} \rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\ 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc \ \begin{quote}
+\noindent
+This PHP script computes the solution to the Towers of Hanoi
+puzzle server-side and renders the result as an HTML table.
+The recursive algorithm requires exactly $2^n - 1$ moves to
+transfer $n$ discs from one pole to another.  Run with
+{\tt php hanoi.php > output.html} or serve via a web server.
+\end{quote} 
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt <}\textbf{html}{\tt\mc \ }lang={\tt "}ja{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt <}\textbf{head}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{meta}{\tt\mc \ }charset={\tt "}UTF{\tt -}8{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{title}{\tt >}Hanoi{\tt\mc \ }Tower{\tt\mc \ }{\tt -}{\tt -}{\tt -}{\tt\mc \ }PHP{\tt\mc \ }Version{\tt <}/\textbf{title}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{style}{\tt\mc \ }type={\tt "}text/css{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  \parbox[t]{0.85\textwidth}{\ \centerline{\bf Stylesheet}} \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  ページ全体のスタイル \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }body{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}family:{\tt\mc \ }{\tt "}Helvetica{\tt\mc \ }Neue{\tt "},{\tt\mc \ }Arial,{\tt\mc \ }sans{\tt -}serif;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }padding:{\tt\mc \ }20px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background{\tt -}color:{\tt\mc \ }{\tt\#}f5f5f5;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }h1{\tt\mc \ }{\tt\char'173}{\tt\mc \ }text{\tt -}align:{\tt\mc \ }center;{\tt\mc \ }color:{\tt\mc \ }{\tt\#}333;{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }table{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border{\tt -}collapse:{\tt\mc \ }collapse;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }20px{\tt\mc \ }auto;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background:{\tt\mc \ }{\tt\#}fff;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }th,{\tt\mc \ }td{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }border:{\tt\mc \ }1px{\tt\mc \ }solid{\tt\mc \ }{\tt\#}ddd;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }padding:{\tt\mc \ }6px{\tt\mc \ }12px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }text{\tt -}align:{\tt\mc \ }center;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }th{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background{\tt -}color:{\tt\mc \ }{\tt\#}4a90d9;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }color:{\tt\mc \ }{\tt\#}fff;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }tr:nth{\tt -}child(even){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }background{\tt -}color:{\tt\mc \ }{\tt\#}f9f9f9;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }.summary{\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }text{\tt -}align:{\tt\mc \ }center;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }margin:{\tt\mc \ }10px{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }font{\tt -}size:{\tt\mc \ }14px;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }color:{\tt\mc \ }{\tt\#}666;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{style}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{head}{\tt >}
+
+\noindent
+\mbox{}{\tt <}\textbf{body}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{h1}{\tt >}Towers{\tt\mc \ }of{\tt\mc \ }Hanoi{\tt <}/\textbf{h1}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt <}?php
+
+\noindent
+\mbox{}\rm\mc {\tt /}{\tt *}\ {\tt *}
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt *} ハノイの塔 --- PHP版
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt *} サーバーサイドで再帰的に解を計算し、
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }{\tt *} HTML テーブルとして出力する
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc {\tt\mc \ }\rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\$}NUM{\tt\_}DISCS{\tt\mc \ }={\tt\mc \ }4;{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ ディスクの枚数 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\$}moves{\tt\mc \ }={\tt\mc \ }\textbf{array}();{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ 操作手順の配列 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc // \ {\bf 再帰的解法} \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc // \ $n$ 枚のディスクを {\tt \$from} から
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc // \    {\tt \$to} へ {\tt \$via} を経由して移動 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\textbf{function}{\tt\mc \ }hanoi({\tt\$}n,{\tt\mc \ }{\tt\$}from,{\tt\mc \ }{\tt\$}to,{\tt\mc \ }{\tt\$}via){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }global{\tt\mc \ }{\tt\$}moves;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }({\tt\$}n{\tt\mc \ }{\tt <}={\tt\mc \ }0){\tt\mc \ }\textbf{return};
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }hanoi({\tt\$}n{\tt\mc \ }{\tt -}{\tt\mc \ }1,{\tt\mc \ }{\tt\$}from,{\tt\mc \ }{\tt\$}via,{\tt\mc \ }{\tt\$}to);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ 上 $n-1$ 枚を退避 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\$}moves[]{\tt\mc \ }={\tt\mc \ }\textbf{array}({\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ 最大ディスクを移動 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }'disc'{\tt\mc \ }={\tt >}{\tt\mc \ }{\tt\$}n,
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }'from'{\tt\mc \ }={\tt >}{\tt\mc \ }{\tt\$}from,
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }'to'{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }={\tt >}{\tt\mc \ }{\tt\$}to
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ });
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }hanoi({\tt\$}n{\tt\mc \ }{\tt -}{\tt\mc \ }1,{\tt\mc \ }{\tt\$}via,{\tt\mc \ }{\tt\$}to,{\tt\mc \ }{\tt\$}from);{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ 退避分を目的地へ \hfill
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc // \ {\bf 移動回数の計算} \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc // \ [問題] この関数が $2^n - 1$ を返すことを
+\tt\mc 
+
+\noindent
+\mbox{}\rm\mc // \    確かめよ。 \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\textbf{function}{\tt\mc \ }countMoves({\tt\$}n){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{if}{\tt\mc \ }({\tt\$}n{\tt\mc \ }=={\tt\mc \ }0){\tt\mc \ }\textbf{return}{\tt\mc \ }0;
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{return}{\tt\mc \ }1{\tt\mc \ }+{\tt\mc \ }2{\tt\mc \ }*{\tt\mc \ }countMoves({\tt\$}n{\tt\mc \ }{\tt -}{\tt\mc \ }1);
+
+\noindent
+\mbox{}{\tt\char'175}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}\rm\mc {\tt /}{\tt *}\  実行 \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}hanoi({\tt\$}NUM{\tt\_}DISCS,{\tt\mc \ }'A',{\tt\mc \ }'C',{\tt\mc \ }'B');
+
+\noindent
+\mbox{}{\tt\$}expected{\tt\mc \ }={\tt\mc \ }countMoves({\tt\$}NUM{\tt\_}DISCS);
+
+\noindent
+\mbox{}?{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{p}{\tt\mc \ }class={\tt "}summary{\tt "}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }Discs:{\tt\mc \ }{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}NUM{\tt\_}DISCS;{\tt\mc \ }?{\tt >}{\tt\mc \ }|
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }Moves:{\tt\mc \ }{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }count({\tt\$}moves);{\tt\mc \ }?{\tt >}{\tt\mc \ }|
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }Expected:{\tt\mc \ }{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}expected;{\tt\mc \ }?{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }(2{\tt <}\textbf{sup}{\tt >}{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}NUM{\tt\_}DISCS;{\tt\mc \ }?{\tt >}{\tt <}/\textbf{sup}{\tt >}{\tt\mc \ }{\tt -}{\tt\mc \ }1)
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{p}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt <}{\tt !}{\tt -}{\tt -}\  \ {\bf 結果テーブル} \hfill \rm\mc \ {\tt -}{\tt -}{\tt >}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{table}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{tr}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{th}{\tt >}{\tt\#}{\tt <}/\textbf{th}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{th}{\tt >}Disc{\tt <}/\textbf{th}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{th}{\tt >}From{\tt <}/\textbf{th}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{th}{\tt >}To{\tt <}/\textbf{th}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{tr}{\tt >}
+
+\noindent
+\mbox{}{\tt <}?php{\tt\mc \ }\textbf{foreach}{\tt\mc \ }({\tt\$}moves{\tt\mc \ }as{\tt\mc \ }{\tt\$}i{\tt\mc \ }={\tt >}{\tt\mc \ }{\tt\$}m):{\tt\mc \ }?{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{tr}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{td}{\tt >}{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}i{\tt\mc \ }+{\tt\mc \ }1;{\tt\mc \ }?{\tt >}{\tt <}/\textbf{td}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{td}{\tt >}{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}m['disc'];{\tt\mc \ }?{\tt >}{\tt <}/\textbf{td}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{td}{\tt >}{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}m['from'];{\tt\mc \ }?{\tt >}{\tt <}/\textbf{td}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{td}{\tt >}{\tt <}?php{\tt\mc \ }\textbf{echo}{\tt\mc \ }{\tt\$}m['to'];{\tt\mc \ }?{\tt >}{\tt <}/\textbf{td}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{tr}{\tt >}
+
+\noindent
+\mbox{}{\tt <}?php{\tt\mc \ }endforeach;{\tt\mc \ }?{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{table}{\tt >}
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}\textbf{script}{\tt >}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ \centerline{\bf JavaScript Section}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc // \ クライアント側の補助スクリプト \hfill
+\tt\mc 
+
+\noindent
+\mbox{}\hfill
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\rm\mc {\tt /}{\tt *}\  テーブル行のハイライト \rm\mc \ {\tt *}{\tt /}
+\tt\mc 
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{var}{\tt\mc \ }rows{\tt\mc \ }={\tt\mc \ }document.querySelectorAll('tr');
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }rows.forEach(\textbf{function}(row){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }row.addEventListener('mouseover',{\tt\mc \ }\textbf{function}(){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{this}.style.backgroundColor{\tt\mc \ }={\tt\mc \ }'{\tt\#}e8f4fd';
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175});
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }row.addEventListener('mouseout',{\tt\mc \ }\textbf{function}(){\tt\mc \ }{\tt\char'173}
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }\textbf{this}.style.backgroundColor{\tt\mc \ }={\tt\mc \ }'';
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175});
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\char'175});
+
+\noindent
+\mbox{}{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt\mc \ }{\tt <}/\textbf{script}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{body}{\tt >}
+
+\noindent
+\mbox{}{\tt <}/\textbf{html}{\tt >}
+
+\rm\mc
+
+\end{document}
