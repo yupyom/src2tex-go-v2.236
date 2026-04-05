@@ -4,7 +4,7 @@ A CLI tool that converts program source code into LaTeX documents for XeLaTeX / 
 
 This is a complete rewrite in Go, based on version 2.12 of `src2tex` — a C program originally developed by Prof. Kazuo Amano (Mathematics, Josai University) in 1992.
 
-The version number follows the decimal expansion of √5, approaching the true value with each release. The current version is **2.236**.
+The version number follows the decimal expansion of $\sqrt 5$, approaching the true value with each release. The current version is **2.236**.
 
 The previous version aimed to stay close to the original behavior. This version updates the architecture for modern LaTeX, targeting current TeX engines. See ARCHITECTURE_en.md and NOTE_en.md for details.
 
