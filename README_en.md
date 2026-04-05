@@ -12,7 +12,7 @@ The previous version aimed to stay close to the original behavior. This version 
 
 | Tool | Purpose |
 |------|---------|
-| [XeLaTeX](https://tug.org/xetex/) etc.$^1$ (TeX Live / MacTeX) | PDF generation |
+| [XeLaTeX](https://tug.org/xetex/) etc. $^1$ (TeX Live / MacTeX) | PDF generation |
 | [Ghostscript](https://www.ghostscript.com/) (`gs`) | EPS → PDF conversion |
 
 <small>1: LuaLaTeX, upLaTeX, and pdfTeX (for ASCII-only documents) are also supported. Plain TeX support was available in the [previous compatible version](https://github.com/yupyom/src2tex-go), but has been dropped here since the author no longer uses plain TeX.</small>
@@ -71,7 +71,7 @@ The output filename is `<input-filename>.tex` — the original extension is kept
 | | Python | `.py` | `python` | ✅ | ✅ (`"""` / `'''`) |
 | | Ruby | `.rb` | `ruby` | ✅ | — |
 | | Perl | `.pl`, `.pm` | `perl` | ✅ | — |
-| | Makefile$^2$ | `.mk`, `Makefile`* | `make` | — | — |
+| | Makefile $^2$ | `.mk`, `Makefile` | `make` | — | — |
 | | Tcl | `.tcl` | `tcl` | ✅ | — |
 | Percent-style | REDUCE | `.red` | `reduce` | ✅ | — |
 | | MATLAB/Octave | `.m` | `matlab` | — | — |
